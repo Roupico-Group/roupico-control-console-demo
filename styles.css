@@ -205,6 +205,34 @@ h1 em,
   margin: 0;
 }
 
+.concept-points {
+  color: var(--muted);
+  display: grid;
+  font-size: 0.9rem;
+  gap: 11px;
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.concept-points strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.concept-points li {
+  line-height: 1.5;
+  padding-left: 20px;
+  position: relative;
+}
+
+.concept-points li::before {
+  color: var(--teal);
+  content: "→";
+  left: 0;
+  position: absolute;
+}
+
 .demo-grid {
   display: grid;
   gap: 18px;
