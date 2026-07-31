@@ -4,13 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="An interactive Roupiço Group concept dashboard for salon bookings, client follow-up, reviews and content approvals." />
+  <meta property="og:title" content="Salon Control Console — interactive concept demo" /><meta property="og:description" content="Explore a controlled workflow for client replies, rebooking and review requests." /><meta property="og:type" content="website" /><meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/salon.html" /><meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Salon Control Console — concept demo" /><meta name="twitter:description" content="A controlled workflow for bookings and client follow-up." /><meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
   <title>Glow Studio Control Console | Concept Demo</title>
+  <link rel="icon" href="./logo-header.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="theme-salon">
+<body class="theme-salon" data-demo-page="salon" data-demo-label="Salon Control Console">
   <div class="shell" data-demo-tabs>
     <header class="topbar">
       <a class="brand" href="./index.html">
@@ -89,7 +93,7 @@
             <div class="panel-title"><h2>Needs attention</h2></div>
             <div class="lane-list">
               <div class="lane"><div><strong>New colour enquiry</strong><span>Asked for price range and earliest consultation.</span></div><div class="lane-actions"><span class="status-pill warn">reply draft</span><button type="button">Reply</button><button type="button">Offer consult</button></div></div>
-              <div class="lane"><div><strong>Review request</strong><span>Three happy appointments from yesterday are ready for a polite review request.</span></div><div class="lane-actions"><span class="status-pill good">ready</span><button type="button">Send request</button></div></div>
+              <div class="lane"><div><strong>Review request</strong><span>Three happy appointments from yesterday are ready for a polite review request.</span></div><div class="lane-actions"><span class="status-pill good" data-action-status="review">ready</span><button type="button" data-demo-action="review" data-action-done="Request simulated ✓">Send request</button></div></div>
               <div class="lane"><div><strong>Social reminder</strong><span>Post the “how to prep for colour” FAQ while the topic is fresh.</span></div><div class="lane-actions"><span class="status-pill">idea</span><button type="button">Open draft</button></div></div>
             </div>
           </article>
@@ -151,7 +155,7 @@
             <div class="panel-title"><h2>Customer message ready for approval</h2><span class="status-pill warn">not sent</span></div>
             <p data-client-reply>Hi Mia, yes, a quick consultation is best before booking balayage so we can check your hair history and patch-test timing. We have space Thursday evening if that suits.</p>
             <div class="draft-box">The console keeps the reply tied to the customer record, so whoever answers can see the notes first.</div>
-            <div class="action-row"><button type="button">Approve reply</button><button type="button">Edit first</button></div>
+            <div class="action-row"><button type="button" data-demo-action="reply" data-action-done="Reply approved ✓">Approve reply</button><button type="button">Edit first</button></div>
           </aside>
         </div>
       </section>
@@ -228,10 +232,8 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <span>Concept demo only. Built to show how a Business Control Console could be adapted for a salon.</span>
-      <span>Interested in something like this? <a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span>
-    </footer>
+    <section class="closing-cta"><div><p class="eyebrow">What you just experienced</p><h2>Client context, prepared replies and review follow-up in one place.</h2><p>Sample interactions show the idea; no message or request is actually sent.</p></div><div class="closing-actions"><button class="button-link" type="button" data-demo-reset>Reset demo</button><a class="button-link" href="./index.html#demos">View all demos</a><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Share feedback on WhatsApp</a></div></section>
+    <footer class="footer"><span>Concept demo only · sample data and simulated actions, not client results.</span><span><a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
   </div>
   <script src="./demo.js" defer></script>
 </body>

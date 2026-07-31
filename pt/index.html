@@ -4,13 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="Demonstrações interativas da Roupiço Group para operações, aprovações e seguimentos sob controlo humano." />
+  <meta property="og:title" content="Consola de Gestão — demonstrações de conceito" /><meta property="og:description" content="Veja tarefas, esperas e próximos passos reunidos numa consola sob controlo humano." /><meta property="og:type" content="website" /><meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/pt/" /><meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Consola de Gestão — demonstrações de conceito" /><meta name="twitter:description" content="Operações e seguimentos sob controlo humano." /><meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
   <title>Consola de Gestão · Demonstrações de conceito | Roupiço Group</title>
+  <link rel="icon" href="../logo-header.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body>
+<body data-demo-page="pt-overview" data-demo-label="Demonstrações da Consola de Gestão">
   <div class="shell">
     <header class="topbar">
       <a class="brand" href="./index.html" aria-label="Consola de Gestão · resumo">
@@ -30,7 +34,7 @@
           <h1>Uma consola, adaptada a <em>cada negócio.</em></h1>
           <p class="hero-copy">Veja o que há para fazer hoje, o que está em espera e o que precisa de seguimento.</p>
           <div class="hero-actions">
-            <a class="button-link primary" href="./imobiliaria.html">Ver demo imobiliária</a>
+            <a class="button-link primary" href="./imobiliaria.html?tour=1">Iniciar visita guiada</a>
           </div>
         </div>
         <aside class="concept-note">
@@ -40,7 +44,7 @@
             <p>Estes exemplos usam dados fictícios para ilustrar a ideia. Não são casos de estudo nem apresentam resultados reais de clientes.</p>
             <ul class="concept-points">
               <li><strong>Adaptável às suas necessidades.</strong> Os ecrãs, as filas e os lembretes são construídos em torno da forma como o seu negócio funciona — não a partir de um modelo fixo.</li>
-              <li><strong>Tanta autonomia quanto quiser.</strong> Deixe as tarefas de rotina seguirem sozinhas, enquanto tudo o que é sensível continua a aguardar a sua aprovação.</li>
+              <li><strong>A aprovação fica com a sua equipa.</strong> A consola destaca o que precisa de atenção e prepara o próximo passo; nada dirigido ao cliente é enviado sem revisão.</li>
               <li><strong>Comece aos poucos e cresça depois.</strong> Arranque com um processo automatizado simples, veja-o a funcionar e só acrescente mais quando fizer sentido.</li>
             </ul>
           </div>
@@ -48,11 +52,9 @@
       </section>
 
       <section class="demo-grid" aria-label="Demonstrações da Consola de Gestão">
-        <a class="demo-card demo-card-realestate" href="./imobiliaria.html">
-          <div class="dashboard-preview" aria-hidden="true">
-            <span class="preview-line"></span>
-            <div class="preview-bars"><span></span><span></span><span></span><span></span><span></span></div>
-            <div class="mini-flow"><span>Contacto</span><span>Visita</span><span>Proposta</span></div>
+        <a class="demo-card demo-card-realestate" href="./imobiliaria.html?tour=1">
+          <div class="dashboard-preview preview-image" role="img" aria-label="Pré-visualização da Consola Imobiliária Costa Lima">
+            <img src="../preview-realestate.jpg" alt="Painel imobiliário com visitas, contactos e tarefas de atualização" />
           </div>
           <div>
             <p class="kicker">Mediação imobiliária</p>
@@ -60,6 +62,7 @@
             <p>Uma vista clara das visitas do dia, das mensagens por responder, dos imóveis a atualizar e dos emails prontos a enviar.</p>
             <div class="tag-row">
               <span class="tag">Visitas</span>
+              <span class="tag">Visita de 2 minutos</span>
               <span class="tag">Imóveis</span>
               <span class="tag">Portais</span>
               <span class="tag">Email</span>
@@ -67,6 +70,8 @@
           </div>
         </a>
       </section>
+
+      <section class="closing-cta"><div><p class="eyebrow">A sua opinião é útil</p><h2>Explore a consola e diga-nos o que melhoraria.</h2><p>Todos os dados e ações são simulados; o seu feedback ajuda-nos a tornar o conceito mais útil.</p></div><div class="closing-actions"><a class="button-link primary" href="./imobiliaria.html?tour=1">Iniciar visita guiada</a><a class="button-link whatsapp-link" data-whatsapp-link href="#">Partilhar feedback no WhatsApp</a></div></section>
 
       <section class="section">
         <div class="section-head">
@@ -87,5 +92,6 @@
       <span>Interessado em algo deste género? <a href="https://roupicogroup.com/">Visite roupicogroup.com</a></span>
     </footer>
   </div>
+  <script src="../demo.js" defer></script>
 </body>
 </html>

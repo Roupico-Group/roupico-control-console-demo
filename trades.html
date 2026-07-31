@@ -4,13 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="An interactive concept dashboard for controlled quotes, jobs, customer updates and invoice follow-ups." />
+  <meta property="og:title" content="Trades Control Console — interactive concept demo" />
+  <meta property="og:description" content="Take a guided tour through a customisable control console, connected workflows and approval-gated follow-ups." />
+  <meta property="og:type" content="website" /><meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/trades.html" /><meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Trades Control Console — concept demo" /><meta name="twitter:description" content="A guided interactive dashboard for jobs, quotes and follow-ups." /><meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
   <title>Harbour Trade Works Control Console | Concept Demo</title>
+  <link rel="icon" href="./logo-header.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="theme-trades">
+<body class="theme-trades" data-demo-page="trades" data-demo-label="Trades Control Console">
   <div class="shell" data-demo-tabs>
     <header class="topbar">
       <a class="brand" href="./index.html">
@@ -25,7 +31,7 @@
     </header>
 
     <main class="dashboard-shell">
-      <section class="business-head">
+      <section class="business-head" data-tour-target="customise">
         <div class="icon-tile" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 7 9 2 3 8l5 5"/><path d="m9 13 6 6 6-6-6-6"/><path d="M2 22h20"/></svg>
         </div>
@@ -35,6 +41,11 @@
           <p>Example dashboard for quotes, jobs, call-backs, invoices and maintenance follow-ups.</p>
         </div>
         <span class="status-pill good">Concept demo</span>
+      </section>
+
+      <section class="tour-launch">
+        <div><p class="eyebrow">Recommended walkthrough</p><h2>See the working flow in about two minutes.</h2><p>Ten short explanations and guided actions. Everything is simulated and resets whenever you choose.</p></div>
+        <div class="tour-launch-actions"><button class="button-link primary" type="button" data-tour-start>Start the tour</button><button class="button-link" type="button" data-demo-reset>Reset demo</button></div>
       </section>
 
       <section class="help-strip" aria-label="What this demo helps with">
@@ -51,7 +62,7 @@
 
       <section class="screen active" data-tab-panel="today">
         <div class="screen-grid">
-          <article class="panel span-4">
+          <article class="panel span-4" data-tour-target="metrics">
             <div class="metric"><span>New quote requests</span><strong>5</strong><small>2 need site photos before pricing</small></div>
           </article>
           <article class="panel span-4">
@@ -61,7 +72,7 @@
             <div class="metric"><span>Call-backs due</span><strong>4</strong><small>Oldest from Monday</small></div>
           </article>
 
-          <article class="panel span-7">
+          <article class="panel span-7" data-tour-target="schedule">
             <div class="panel-title"><h2>Site visit schedule</h2><span class="status-pill good">today</span></div>
             <div class="calendar-strip">
               <span><strong>08:30</strong><small>Boiler check</small></span>
@@ -82,7 +93,7 @@
             </div>
           </article>
 
-          <article class="panel span-8">
+          <article class="panel span-8" data-tour-target="attention">
             <div class="panel-title"><h2>Today&apos;s job board</h2></div>
             <div class="workflow-map">
               <div class="workflow-step"><b>Quote</b><strong>Kitchen tap replacement</strong><span>Photos received, customer wants rough price.</span></div>
@@ -92,11 +103,11 @@
             </div>
           </article>
 
-          <article class="panel span-12">
+          <article class="panel span-12" data-tour-target="followups">
             <div class="panel-title"><h2>Follow-ups not forgotten</h2><span class="status-pill warn">catches what gets missed</span></div>
             <div class="lane-list">
               <div class="lane"><div><strong>Quote requests with no reply over 48h</strong><span>Customers still waiting to hear back.</span></div><div class="lane-actions"><span class="status-pill warn">2 to chase</span><button type="button">Reply now</button></div></div>
-              <div class="lane"><div><strong>Call-backs overdue</strong><span>Oldest has been waiting since Monday.</span></div><div class="lane-actions"><span class="status-pill warn">4</span><button type="button">Start call block</button></div></div>
+              <div class="lane" data-tour-target="callback"><div><strong>Call-backs overdue</strong><span>Oldest has been waiting since Monday.</span></div><div class="lane-actions"><span class="status-pill warn" data-action-status="callback">4</span><button type="button" data-demo-action="callback" data-action-done="Callback completed ✓">Complete callback</button></div></div>
               <div class="lane"><div><strong>Finished jobs not yet invoiced</strong><span>Work done, invoice still sitting in drafts.</span></div><div class="lane-actions"><span class="status-pill">2</span><button type="button">Create invoices</button></div></div>
             </div>
             <p class="fine">Example queue — shows what the console flags before it costs a job or a payment, not a results claim.</p>
@@ -106,12 +117,12 @@
 
       <section class="screen" data-tab-panel="jobs" hidden>
         <div class="screen-grid">
-          <article class="panel span-12">
+          <article class="panel span-12" data-tour-target="pipeline">
             <div class="panel-title"><h2>Quote pipeline</h2><span class="status-pill good">example workflow</span></div>
             <div class="quote-pipeline">
               <div class="quote-stage">
                 <h3>New</h3>
-                <div class="job-card"><strong>Fence repair enquiry</strong><button type="button">Reply</button></div>
+                <div class="job-card" data-tour-target="quote"><strong>Fence repair enquiry</strong><button type="button" data-demo-action="quote" data-action-done="Moved to Needs info ✓">Advance quote</button></div>
                 <div class="job-card"><strong>Small bathroom leak</strong><button type="button">Ask photos</button></div>
               </div>
               <div class="quote-stage">
@@ -141,7 +152,7 @@
           <article class="panel span-7">
             <div class="panel-title"><h2>Customer messages to check</h2></div>
             <div class="lane-list">
-              <div class="lane"><div><strong>Arrival window</strong><span>Send polite time-window note for tomorrow&apos;s first job.</span></div><div class="lane-actions"><span class="status-pill warn">review</span><button type="button">Send update</button></div></div>
+              <div class="lane" data-tour-target="update"><div><strong>Arrival window</strong><span>Send polite time-window note for tomorrow&apos;s first job.</span></div><div class="lane-actions"><span class="status-pill warn" data-action-status="update">review</span><button type="button" data-demo-action="update" data-action-done="Approved update ✓">Approve update</button></div></div>
               <div class="lane"><div><strong>Parts delay</strong><span>Explain delay and offer updated date without overpromising.</span></div><div class="lane-actions"><span class="status-pill">draft</span><button type="button">Send draft</button></div></div>
               <div class="lane"><div><strong>Quote follow-up</strong><span>Check if the customer wants to go ahead or has questions.</span></div><div class="lane-actions"><span class="status-pill good">ready</span><button type="button">Send chase</button></div></div>
             </div>
@@ -157,7 +168,7 @@
 
       <section class="screen" data-tab-panel="cashflow" hidden>
         <div class="screen-grid">
-          <article class="panel span-12">
+          <article class="panel span-12" data-tour-target="cash">
             <div class="panel-title"><h2>Cash at a glance</h2><span class="status-pill good">example figures</span></div>
             <div class="cash-figs">
               <div class="metric"><span>Outstanding to chase</span><strong class="cash">£2,450</strong><small>3 invoices · sent only after you approve</small></div>
@@ -168,7 +179,7 @@
 
           <article class="panel span-4">
             <div class="panel-title"><h2>Invoices waiting</h2></div>
-            <div class="money-row"><span>Reminder draft ready</span><strong>3</strong><button type="button">Send chasers</button></div>
+            <div class="money-row" data-tour-target="invoice"><span>Reminder draft ready</span><strong data-action-status="invoice">3</strong><button type="button" data-demo-action="invoice" data-action-done="Chaser approved ✓">Approve one chaser</button></div>
             <div class="money-row"><span>Needs photo attached</span><strong>2</strong><button type="button">Attach</button></div>
             <div class="money-row"><span>Marked paid today</span><strong>1</strong><button type="button">View</button></div>
           </article>
@@ -212,10 +223,8 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <span>Concept demo only. Built to show how a Business Control Console could be adapted for a trades/service business.</span>
-      <span>Interested in something like this? <a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span>
-    </footer>
+    <section class="closing-cta"><div><p class="eyebrow">What you just experienced</p><h2>Jobs surfaced, next steps prepared, approvals kept with you.</h2><p>This concept shows how one control view could organise everyday follow-up without sending anything on its own.</p></div><div class="closing-actions"><a class="button-link" href="./index.html#demos">View all demos</a><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Share feedback on WhatsApp</a></div></section>
+    <footer class="footer"><span>Concept demo only · sample data and simulated actions, not client results.</span><span><a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
   </div>
   <script src="./demo.js" defer></script>
 </body>

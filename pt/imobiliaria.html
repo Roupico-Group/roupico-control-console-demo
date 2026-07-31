@@ -4,13 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="Demonstração interativa de uma consola para visitas, contactos, imóveis e emails sob aprovação do agente." />
+  <meta property="og:title" content="Consola Imobiliária — demonstração de conceito" /><meta property="og:description" content="Explore visitas, imóveis e emails preparados para aprovação humana." /><meta property="og:type" content="website" /><meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/pt/imobiliaria.html" /><meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Consola Imobiliária — demonstração de conceito" /><meta name="twitter:description" content="Visitas, imóveis e seguimentos sob controlo humano." /><meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
   <title>Costa Lima Consola Imobiliária | Demonstração de conceito</title>
+  <link rel="icon" href="../logo-header.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body class="theme-realestate">
+<body class="theme-realestate" data-demo-page="realestate" data-demo-label="Consola Imobiliária">
   <div class="shell" data-demo-tabs>
     <header class="topbar">
       <a class="brand" href="./index.html">
@@ -24,7 +28,7 @@
     </header>
 
     <main class="dashboard-shell">
-      <section class="business-head">
+      <section class="business-head" data-tour-target="pt-customise">
         <div class="icon-tile" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
         </div>
@@ -34,6 +38,11 @@
           <p>Painel de exemplo para as visitas do dia, as mensagens por responder, os imóveis e o envio de emails.</p>
         </div>
         <span class="status-pill good">Demonstração de conceito</span>
+      </section>
+
+      <section class="tour-launch">
+        <div><p class="eyebrow">Visita guiada recomendada</p><h2>Conheça a consola em cerca de dois minutos.</h2><p>Dez explicações breves e ações guiadas. Tudo é simulado e pode repor a demonstração quando quiser.</p></div>
+        <div class="tour-launch-actions"><button class="button-link primary" type="button" data-tour-start>Iniciar visita guiada</button><button class="button-link" type="button" data-demo-reset>Repor demo</button></div>
       </section>
 
       <section class="help-strip" aria-label="Para que serve esta demonstração">
@@ -50,7 +59,7 @@
 
       <section class="screen active" data-tab-panel="hoje">
         <div class="screen-grid">
-          <article class="panel span-4">
+          <article class="panel span-4" data-tour-target="pt-metrics">
             <div class="metric"><span>Visitas hoje</span><strong>3</strong><small>2 Cascais, 1 Oeiras</small></div>
           </article>
           <article class="panel span-4">
@@ -60,7 +69,7 @@
             <div class="metric"><span>Imóveis a atualizar</span><strong>4</strong><small>Preço, fotografias, destaque no portal</small></div>
           </article>
 
-          <article class="panel span-7">
+          <article class="panel span-7" data-tour-target="pt-schedule">
             <div class="panel-title"><h2>Agenda de visitas</h2><span class="status-pill good">hoje · resumo</span></div>
             <div class="calendar-strip">
               <span><strong>10:00</strong><small>T2 Oeiras</small></span>
@@ -72,7 +81,7 @@
             </div>
           </article>
 
-          <article class="panel span-5">
+          <article class="panel span-5" data-tour-target="pt-sources">
             <div class="panel-title"><h2>De onde vieram os contactos</h2></div>
             <div class="chart-bars">
               <div style="min-height:140px" data-label="Idealista"></div>
@@ -83,7 +92,7 @@
             </div>
           </article>
 
-          <article class="panel span-7">
+          <article class="panel span-7" data-tour-target="pt-responses">
             <div class="panel-title"><h2>A precisar de resposta</h2></div>
             <div class="lane-list">
               <div class="lane"><div><strong>Pedido de visita</strong><span>Contacto do Idealista para o T2 em Cascais — pede horário ao fim do dia.</span></div><div class="lane-actions"><span class="status-pill warn">rascunho de resposta</span><button type="button">Responder</button><button type="button">Propor horário</button></div></div>
@@ -92,7 +101,7 @@
             </div>
           </article>
 
-          <article class="panel span-12">
+          <article class="panel span-12" data-tour-target="pt-followups">
             <div class="panel-title"><h2>Para não esquecer</h2><span class="status-pill warn">deteta o que costuma escapar</span></div>
             <div class="lane-list">
               <div class="lane"><div><strong>Contactos sem resposta há mais de 24h</strong><span>Mensagens do Idealista e do WhatsApp que continuam por responder.</span></div><div class="lane-actions"><span class="status-pill warn">3 a recuperar</span><button type="button">Responder agora</button></div></div>
@@ -106,7 +115,7 @@
 
       <section class="screen" data-tab-panel="imoveis" hidden>
         <div class="screen-grid">
-          <article class="panel span-12 client-search-panel">
+          <article class="panel span-12 client-search-panel" data-tour-target="pt-portfolio">
             <div class="panel-title"><h2>Carteira de imóveis</h2><span class="status-pill good">dados de exemplo</span></div>
             <label class="client-search">
               <span>Procurar por referência, tipologia ou zona</span>
@@ -115,7 +124,7 @@
             <p class="muted">5 imóveis ativos. Cada cartão liga aos anúncios nos portais e mostra o estado e o que falta atualizar.</p>
           </article>
 
-          <article class="panel span-8">
+          <article class="panel span-8" data-tour-target="pt-listings">
             <div class="panel-title"><h2>Imóveis ativos</h2><span class="status-pill" data-listing-count>5 imóveis</span></div>
             <div class="lane-list" data-listing-list>
               <div class="lane" data-listing data-listing-keywords="lc-204 t3 cascais disponivel apartamento 420">
@@ -124,7 +133,7 @@
                   <span class="status-pill good">Disponível</span>
                   <a class="portal-link" href="https://www.idealista.pt/" target="_blank" rel="noopener">Idealista</a>
                   <a class="portal-link" href="https://www.imovirtual.com/" target="_blank" rel="noopener">Imovirtual</a>
-                  <button type="button">Atualizar</button>
+                  <button type="button" data-demo-action="listing" data-action-done="Atualização concluída ✓">Concluir atualização</button>
                 </div>
               </div>
               <div class="lane" data-listing data-listing-keywords="lc-198 t2 oeiras reservado apartamento 295">
@@ -187,7 +196,7 @@
 
       <section class="screen" data-tab-panel="email" hidden>
         <div class="screen-grid">
-          <article class="panel span-5">
+          <article class="panel span-5" data-tour-target="pt-emails">
             <div class="panel-title"><h2>Emails na fila</h2><span class="status-pill warn">aguardam aprovação</span></div>
             <div class="email-list" role="listbox" aria-label="Modelos de email">
               <button class="email-item active" type="button" data-email-pick="0" aria-selected="true">
@@ -210,7 +219,7 @@
             <p class="fine">Fila de exemplo. Nada é enviado nesta demonstração — os emails aguardam sempre a aprovação do agente.</p>
           </article>
 
-          <article class="panel span-7 email-compose">
+          <article class="panel span-7 email-compose" data-tour-target="pt-email-preview">
             <div class="panel-title"><h2>Pré-visualização do email</h2><span class="status-pill warn" data-email-status>rascunho</span></div>
             <div class="email-meta">
               <div class="email-field"><span>Para</span><strong data-email-to>antonio.almeida@email.pt</strong></div>
@@ -241,10 +250,8 @@ Inês Costa — Costa Lima Mediação Imobiliária</div>
       </section>
     </main>
 
-    <footer class="footer">
-      <span>Apenas demonstração de conceito. Concebida para mostrar como uma Consola de Gestão pode ser adaptada à mediação imobiliária.</span>
-      <span>Interessado em algo deste género? <a href="https://roupicogroup.com/">Visite roupicogroup.com</a></span>
-    </footer>
+    <section class="closing-cta"><div><p class="eyebrow">O que acabou de experimentar</p><h2>Contactos, imóveis e emails preparados num só lugar.</h2><p>As interações são simuladas; nada é publicado ou enviado nesta demonstração.</p></div><div class="closing-actions"><button class="button-link" type="button" data-demo-reset>Repor demo</button><a class="button-link" href="./index.html">Ver todas as demos</a><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Partilhar feedback no WhatsApp</a></div></section>
+    <footer class="footer"><span>Apenas demonstração de conceito · dados e ações simulados, não resultados de clientes.</span><span><a href="https://roupicogroup.com/">Visite roupicogroup.com</a></span></footer>
   </div>
   <script src="../demo.js" defer></script>
 </body>

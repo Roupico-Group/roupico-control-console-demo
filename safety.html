@@ -4,13 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="An interactive concept dashboard for controlled health and safety administration, renewals and qualified human review." />
+  <meta property="og:title" content="H&amp;S Admin Control Console — concept demo" /><meta property="og:description" content="Explore admin queues, renewals and competent-person review safeguards." /><meta property="og:type" content="website" /><meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/safety.html" /><meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="H&amp;S Admin Control Console — concept demo" /><meta name="twitter:description" content="Controlled administration with qualified human review." /><meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
   <title>SafeWork Advisory Control Console | Concept Demo</title>
+  <link rel="icon" href="./logo-header.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="theme-safety">
+<body class="theme-safety" data-demo-page="safety" data-demo-label="H&amp;S Admin Control Console">
   <div class="shell" data-demo-tabs>
     <header class="topbar">
       <a class="brand" href="./index.html">
@@ -88,7 +92,7 @@
             <div class="panel-title"><h2>Needs attention</h2></div>
             <div class="lane-list">
               <div class="lane"><div><strong>RAMS enquiry</strong><span>Collect scope and site details for professional review.</span></div><div class="lane-actions"><span class="status-pill warn">clarify</span><button type="button">Request details</button></div></div>
-              <div class="lane"><div><strong>First-aid training renewal</strong><span>Reminder draft ready for existing client.</span></div><div class="lane-actions"><span class="status-pill good">ready</span><button type="button">Send reminder</button></div></div>
+              <div class="lane"><div><strong>First-aid training renewal</strong><span>Reminder draft ready for existing client.</span></div><div class="lane-actions"><span class="status-pill good" data-action-status="renewal">ready</span><button type="button" data-demo-action="renewal" data-action-done="Reminder acknowledged ✓">Acknowledge reminder</button></div></div>
               <div class="lane"><div><strong>Fire assessment follow-up</strong><span>Book review call; no technical advice in the draft.</span></div><div class="lane-actions"><span class="status-pill">schedule</span><button type="button">Book call</button></div></div>
             </div>
           </article>
@@ -128,7 +132,7 @@
               </div>
               <div class="quote-stage">
                 <h3>Review</h3>
-                <div class="job-card"><strong>Advisor notes to check</strong><button type="button">Open review</button></div>
+                <div class="job-card"><strong>Advisor notes to check</strong><button type="button" data-demo-action="review" data-action-done="Ready for review ✓">Mark ready for review</button></div>
                 <div class="job-card"><strong>Client action list</strong><button type="button">Format list</button></div>
               </div>
             </div>
@@ -205,10 +209,8 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <span>Concept demo only. Built to show how a Business Control Console could support a sensitive advisory business without replacing professional judgement.</span>
-      <span>Interested in something like this? <a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span>
-    </footer>
+    <section class="closing-cta"><div><p class="eyebrow">What you just experienced</p><h2>Admin organised without replacing professional judgement.</h2><p>The console can prepare and track administrative work; qualified people retain control of every technical decision.</p></div><div class="closing-actions"><button class="button-link" type="button" data-demo-reset>Reset demo</button><a class="button-link" href="./index.html#demos">View all demos</a><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Share feedback on WhatsApp</a></div></section>
+    <footer class="footer"><span>Concept demo only · sample data and simulated actions, not client results.</span><span><a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
   </div>
   <script src="./demo.js" defer></script>
 </body>
