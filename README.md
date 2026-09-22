@@ -2,11 +2,11 @@
 
 Interactive concept demos showing how a tailored control console could bring business tasks, approvals and follow-up workflows into one clearer place.
 
-Redesign published 2026-09-23: the overview and all four sector examples now use the same self-guided visual system. Each four-stage journey updates a visible pipeline, workload figures and activity trail entirely in the visitor's browser, while retaining a sector-specific workflow and explicit human-approval boundaries.
+Redesign updated 2026-09-23: all four sector examples now use richer five-stage workflows with visible prepared work, explicit waiting states, simulated reply or outbound-call routes, selectable appointment slots and a final confirmation or review step. Trades shows an itemised quote and customer messages; Salon shows consultation drafts and patch-test context; Safety shows the real scope request and administrative review pack without generating professional advice; Portuguese Property shows the full contact response and visit confirmation.
 
 ## Demo sectors
 
-- Trades and service businesses — enquiry, quote, booking and customer update
+- Trades and service businesses — enquiry, itemised quote, customer decision, selected booking and customer update
 - Salons and beauty businesses — enquiry, consultation, booking and confirmation
 - Health and safety administration — enquiry, scope clarification, visit and competent-person review
 - Portuguese property mediation — contacto, resposta, visita e confirmação

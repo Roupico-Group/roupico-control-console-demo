@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow" />
   <meta name="description" content="A self-guided fictional workflow showing how a tailored control console could organise a trades enquiry, quote, booking and customer update." />
   <meta property="og:title" content="Harbour Trade Works Control Console | Concept Demo" />
-  <meta property="og:description" content="Try a four-step fictional workflow with priorities, context and human-approved actions." />
+  <meta property="og:description" content="Try a realistic fictional workflow with an itemised quote, customer decision, chosen slot and human-approved update." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/trades.html" />
   <meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=3" />
 </head>
 <body class="theme-trades flagship-demo" data-demo-page="trades" data-demo-label="Harbour Trade Works Control Console" data-inline-conversion>
   <div class="shell">
@@ -42,7 +42,7 @@
           <p class="concept-status"><span aria-hidden="true">●</span> Concept demo · fictional data · simulated actions</p>
           <p class="eyebrow">Trades / service business</p>
           <h1 id="trades-title">Harbour Trade Works <em>Control Console</em></h1>
-          <p>Move one sample enquiry from review to an approved customer update. Four short actions show the workflow; nothing is sent.</p>
+          <p>Follow a realistic enquiry through an itemised quote, customer decision, chosen visit slot and approved update. Nothing is sent.</p>
         </div>
         <a class="button-link" href="#how-it-works">How this example works</a>
       </section>
@@ -59,11 +59,12 @@
           <article><span>Awaiting approval</span><strong data-metric-value="approvals">3</strong><small data-metric-note="approvals">Nothing sends automatically</small></article>
         </div>
 
-        <ol class="journey-pipeline" aria-label="Enquiry workflow">
+        <ol class="journey-pipeline five-stage" aria-label="Enquiry workflow">
           <li data-pipeline-step="0"><span>1</span><strong>Review</strong><small>Enquiry</small></li>
-          <li data-pipeline-step="1"><span>2</span><strong>Approve</strong><small>Quote</small></li>
-          <li data-pipeline-step="2"><span>3</span><strong>Book</strong><small>Visit</small></li>
-          <li data-pipeline-step="3"><span>4</span><strong>Update</strong><small>Customer</small></li>
+          <li data-pipeline-step="1"><span>2</span><strong>Quote</strong><small>Approve</small></li>
+          <li data-pipeline-step="2"><span>3</span><strong>Customer</strong><small>Decision</small></li>
+          <li data-pipeline-step="3"><span>4</span><strong>Book</strong><small>Choose slot</small></li>
+          <li data-pipeline-step="4"><span>5</span><strong>Update</strong><small>Confirm</small></li>
         </ol>
 
         <div class="journey-layout">
@@ -74,7 +75,9 @@
             <dl class="enquiry-facts" data-step-facts>
               <div><dt>Customer</dt><dd>Jordan M.</dd></div><div><dt>Request</dt><dd>Replace two damaged fence panels</dd></div><div><dt>Area</dt><dd>Sheerness · ME12</dd></div><div><dt>Evidence</dt><dd>2 photos attached</dd></div>
             </dl>
+            <section class="journey-artifact" data-journey-artifact hidden aria-live="polite"></section>
             <div class="next-change"><span aria-hidden="true">→</span><p><strong>What changes next</strong><span data-step-next>A sample quote moves into the approval queue. It still cannot be sent.</span></p></div>
+            <div class="journey-choice-row" data-journey-choices hidden></div>
             <button class="journey-primary" type="button" data-journey-action>Prepare sample quote</button>
             <p class="action-reassurance"><span aria-hidden="true">⌁</span> This only changes the fictional dashboard in your browser.</p>
             <p class="sr-only" data-journey-status role="status" aria-live="polite"></p>
@@ -97,7 +100,7 @@
         </div>
 
         <section class="journey-complete" data-journey-complete hidden>
-          <div><p class="journey-overline">Example complete</p><h3>One enquiry moved forward, with every decision visible.</h3><p>The example kept the customer details, next action and approval points together. A real console would be scoped around the tools, permissions and workflow your business actually uses.</p></div>
+          <div><p class="journey-overline">Example complete</p><h3>One enquiry moved forward, with every decision and draft visible.</h3><p>The quote, customer decision, selected slot and final update stayed together. A real console would be scoped around the tools, permissions and workflow your business actually uses.</p></div>
           <button class="button-link" type="button" data-explore-toggle aria-expanded="false" aria-controls="full-example">Explore the wider dashboard</button>
         </section>
 
@@ -124,6 +127,6 @@
 
     <footer class="footer"><span>Concept demo only · fictional data and simulated actions, not client results.</span><span><a href="./index.html#examples">Other examples</a> · <a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
   </div>
-  <script src="./demo.js" defer></script>
+  <script src="./demo.js?v=3" defer></script>
 </body>
 </html>

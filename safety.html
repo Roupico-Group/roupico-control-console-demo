@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=3" />
 </head>
 <body class="theme-safety flagship-demo" data-demo-page="safety" data-demo-label="SafeWork Advisory Control Console" data-inline-conversion>
   <div class="shell">
@@ -42,7 +42,7 @@
           <p class="concept-status"><span aria-hidden="true">●</span> Concept demo · fictional data · simulated actions</p>
           <p class="eyebrow">H&amp;S / compliance advisory business</p>
           <h1 id="safety-title">SafeWork Advisory <em>Control Console</em></h1>
-          <p>Move one inspection enquiry from admin review to a competent-person review queue. The console organises work; it never replaces professional judgement.</p>
+          <p>Follow one inspection enquiry through scope questions, the client response, a chosen visit slot and competent-person review. The console never replaces professional judgement.</p>
         </div>
         <a class="button-link" href="#how-it-works">How this example works</a>
       </section>
@@ -59,22 +59,25 @@
           <article><span>Professional review</span><strong data-metric-value="reviews">5</strong><small data-metric-note="reviews">Qualified decision required</small></article>
         </div>
 
-        <ol class="journey-pipeline" aria-label="Inspection enquiry workflow">
+        <ol class="journey-pipeline five-stage" aria-label="Inspection enquiry workflow">
           <li data-pipeline-step="0"><span>1</span><strong>Review</strong><small>Enquiry</small></li>
           <li data-pipeline-step="1"><span>2</span><strong>Clarify</strong><small>Scope</small></li>
-          <li data-pipeline-step="2"><span>3</span><strong>Book</strong><small>Visit</small></li>
-          <li data-pipeline-step="3"><span>4</span><strong>Route</strong><small>Review</small></li>
+          <li data-pipeline-step="2"><span>3</span><strong>Client</strong><small>Details</small></li>
+          <li data-pipeline-step="3"><span>4</span><strong>Book</strong><small>Visit</small></li>
+          <li data-pipeline-step="4"><span>5</span><strong>Route</strong><small>Review</small></li>
         </ol>
 
         <div class="journey-layout">
           <section class="journey-focus" aria-labelledby="journey-step-title">
-            <div class="step-heading"><p data-step-label>Step 1 of 4 · Review</p><span data-step-control>Admin decision</span></div>
+            <div class="step-heading"><p data-step-label>Step 1 of 5 · Review</p><span data-step-control>Admin decision</span></div>
             <h3 id="journey-step-title" data-step-title>Review the new inspection enquiry.</h3>
             <p class="step-copy" data-step-copy>The client supplied a site type, preferred week and contact. Check the admin details without making any technical assessment.</p>
             <dl class="enquiry-facts" data-step-facts>
               <div><dt>Client</dt><dd>North Quay Storage</dd></div><div><dt>Request</dt><dd>Warehouse inspection</dd></div><div><dt>Site</dt><dd>Single-storey unit</dd></div><div><dt>Boundary</dt><dd>Admin triage only</dd></div>
             </dl>
+            <section class="journey-artifact" data-journey-artifact hidden aria-live="polite"></section>
             <div class="next-change"><span aria-hidden="true">→</span><p><strong>What changes next</strong><span data-step-next>A request for missing scope details is prepared. It still cannot be sent.</span></p></div>
+            <div class="journey-choice-row" data-journey-choices hidden></div>
             <button class="journey-primary" type="button" data-journey-action>Prepare scope questions</button>
             <p class="action-reassurance"><span aria-hidden="true">⌁</span> This only changes the fictional dashboard in your browser.</p>
             <p class="sr-only" data-journey-status role="status" aria-live="polite"></p>
@@ -123,6 +126,6 @@
 
     <footer class="footer"><span>Concept demo only · fictional data and simulated actions, not professional advice or client results.</span><span><a href="./index.html#examples">Other examples</a> · <a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
   </div>
-  <script src="./demo.js" defer></script>
+  <script src="./demo.js?v=3" defer></script>
 </body>
 </html>

@@ -243,66 +243,86 @@ if (emailItems.length) {
 // Later sector demos can supply another configuration without changing the state logic.
 const journeyConfigs = {
   trades: {
+    version: "trades-v2",
     stages: [
       {
-        label: "Step 1 of 4 · Review",
+        label: "Step 1 of 5 · Review",
         control: "Human decision",
         title: "Review the new fence-repair enquiry.",
-        copy: "The customer supplied a postcode, photos and preferred week. Review the useful details before preparing anything.",
-        facts: [["Customer", "Jordan M."], ["Request", "Replace two damaged fence panels"], ["Area", "Sheerness · ME12"], ["Evidence", "2 photos attached"]],
-        next: "A sample quote moves into the approval queue. It still cannot be sent.",
+        copy: "Jordan supplied a postcode, two photos and a preferred week. Check the evidence and scope before pricing the work.",
+        facts: [["Customer", "Jordan M."], ["Request", "Replace two damaged fence panels"], ["Area", "Sheerness · ME12"], ["Access", "Side gate · driveway parking"]],
+        artifact: { type: "evidence", title: "Enquiry evidence", items: ["2 customer photos", "Panels approximately 6 × 6 ft", "Existing posts appear reusable", "Removal requested"] },
+        next: "Build an itemised sample quote and the message that would accompany it.",
         action: "Prepare sample quote",
         metrics: { enquiries: [5, "One ready to review"], jobs: [8, "Three on site today"], approvals: [3, "Nothing sends automatically"] },
         workload: { urgent: 3, today: 5, track: 8 },
         activities: [["08:42", "New enquiry received", "Website request · fictional record"]],
       },
       {
-        label: "Step 2 of 4 · Approve",
+        label: "Step 2 of 5 · Quote",
         control: "Approval required",
-        title: "Check the prepared sample quote.",
-        copy: "Details sit beside a fictional scope and price. Review them before the quote moves forward.",
-        facts: [["Customer", "Jordan M."], ["Scope", "Two panels · remove and replace"], ["Sample price", "£480 including materials"], ["Status", "Draft only · not sent"]],
-        next: "Approval marks the quote ready and reveals the booking step.",
-        action: "Approve sample quote",
+        title: "Review the itemised quote and customer message.",
+        copy: "The console has brought the scope, individual prices and proposed wording together. Nothing has been sent.",
+        facts: [["Customer", "Jordan M."], ["Scope", "Remove and replace two panels"], ["Quote status", "Draft only"], ["Validity", "14 days"]],
+        artifact: { type: "quote", title: "Sample quote HTW-1048", lines: [["Fence panels", "2 × £140", "£280"], ["Posts and fixings", "1 set", "£45"], ["Labour", "3 hours", "£120"], ["Removal and disposal", "Fixed", "£35"]], total: "£480", message: "Hi Jordan, thanks for sending the photos. Based on the information provided, the sample quote to remove and replace the two damaged fence panels is £480, including materials and disposal. This is subject to confirming that the existing posts are sound when we arrive. The quote is valid for 14 days. Please let us know if you would like to go ahead or if you have any questions." },
+        next: "Approval simulates sending this exact quote and then pauses for the customer’s decision.",
+        action: "Approve and simulate sending quote",
         metrics: { enquiries: [4, "Reviewed and organised"], jobs: [8, "Three on site today"], approvals: [4, "Sample quote added"] },
         workload: { urgent: 3, today: 5, track: 8 },
         activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Waiting for human approval"]],
       },
       {
-        label: "Step 3 of 4 · Book",
-        control: "Schedule decision",
-        title: "Choose the sample site-visit slot.",
-        copy: "The quote is approved inside this demo. Select the suggested visit so the work and customer update stay aligned.",
-        facts: [["Quote", "Approved in this demo"], ["Suggested", "Thursday · 10:30"], ["Alternative", "Friday · 13:00"], ["Visit length", "45 minutes"]],
-        next: "Booking the visit prepares a customer confirmation for review.",
-        action: "Book Thursday at 10:30",
-        metrics: { enquiries: [4, "Reviewed and organised"], jobs: [8, "Visit ready to book"], approvals: [3, "Quote decision recorded"] },
+        label: "Step 3 of 5 · Customer decision",
+        control: "Waiting state",
+        title: "Wait for Jordan—or record a call.",
+        copy: "The quote is approved and simulated as sent. The workflow stops here until the customer replies or somebody contacts them.",
+        facts: [["Quote", "HTW-1048 · £480"], ["Status", "Awaiting customer"], ["Sent", "Simulated · 08:49"], ["Next chase", "Tomorrow · 10:00"]],
+        artifact: { type: "waiting", title: "Customer response", message: "No response recorded yet. The job cannot be booked until the customer accepts the quote.", callMessage: "Call route selected. Record the customer’s decision from the conversation before opening the diary." },
+        secondaryAction: "Log a customer call instead",
+        next: "Record an acceptance from an incoming reply or from your own call before choosing a slot.",
+        action: "Simulate customer accepts",
+        callAction: "Record accepted by phone",
+        metrics: { enquiries: [4, "Quote awaiting a decision"], jobs: [8, "No visit booked yet"], approvals: [3, "Quote decision recorded"] },
         workload: { urgent: 2, today: 6, track: 8 },
-        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Scope and price brought together"], ["08:49", "Sample quote approved", "Decision recorded in the demo"]],
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Itemised price and message ready"], ["08:49", "Quote approved", "Simulated send · awaiting customer"]],
       },
       {
-        label: "Step 4 of 4 · Update",
+        label: "Step 4 of 5 · Schedule",
+        control: "Choose a slot",
+        title: "Select an available visit slot.",
+        copy: "Jordan has accepted the sample quote. Compare the available diary options and choose the slot that fits the working day.",
+        facts: [["Customer decision", "Accepted in this demo"], ["Quote", "HTW-1048 · £480"], ["Estimated work", "3 hours"], ["Team", "Harbour crew"]],
+        artifact: { type: "slots", title: "Available appointments", slots: [["Thursday · 10:30", "Best fit · crew nearby"], ["Friday · 13:00", "Available after morning job"], ["Monday · 09:00", "First call of the day"]] },
+        next: "Booking the selected slot prepares a customer confirmation using the exact date and time chosen.",
+        action: "Book selected slot",
+        metrics: { enquiries: [4, "Customer accepted"], jobs: [8, "Visit ready to schedule"], approvals: [3, "Customer decision recorded"] },
+        workload: { urgent: 2, today: 6, track: 8 },
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Itemised price and message ready"], ["08:49", "Quote approved", "Simulated send recorded"], ["09:26", "Customer accepted quote", "{{decision}}"]],
+      },
+      {
+        label: "Step 5 of 5 · Update",
         control: "Customer-facing review",
-        title: "Review the customer update.",
-        copy: "The visit is on the fictional schedule. Check the prepared confirmation before recording the final approval.",
-        facts: [["Recipient", "Jordan M."], ["Visit", "Thursday · 10:30"], ["Channel", "WhatsApp draft"], ["Send rule", "Approval required"]],
-        next: "Approval records the decision. No real message is sent.",
-        action: "Approve simulated update",
-        metrics: { enquiries: [4, "Reviewed and organised"], jobs: [9, "Sample visit now included"], approvals: [4, "Customer update waiting"] },
+        title: "Review the booking confirmation.",
+        copy: "The selected visit is now on the fictional schedule. Check the actual customer update before approving it.",
+        facts: [["Recipient", "Jordan M."], ["Visit", "{{slot}}"], ["Channel", "WhatsApp draft"], ["Send rule", "Approval required"]],
+        artifact: { type: "message", title: "Customer update draft", message: "Hi Jordan, thanks for confirming that you would like to go ahead with quote HTW-1048. We have booked the fence repair for {{slot}}. We will bring the materials and remove the damaged panels as quoted. Please let us know if access arrangements change before the visit." },
+        next: "Approval records the confirmation. No real message is sent.",
+        action: "Approve simulated customer update",
+        metrics: { enquiries: [4, "Customer accepted"], jobs: [9, "Selected visit now included"], approvals: [4, "Confirmation waiting"] },
         workload: { urgent: 2, today: 5, track: 9 },
-        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Scope and price brought together"], ["08:49", "Sample quote approved", "Decision recorded in the demo"], ["08:51", "Sample visit booked", "Thursday at 10:30"]],
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Itemised price and message ready"], ["08:49", "Quote approved", "Simulated send recorded"], ["09:26", "Customer accepted quote", "{{decision}}"], ["09:29", "Visit booked", "{{slot}}"]],
       },
       {
-        label: "Four-step example complete",
+        label: "Five-step example complete",
         control: "All decisions recorded",
         title: "The enquiry is ready for the next working day.",
-        copy: "The fictional quote, visit and customer update now share one visible decision trail. Nothing left this browser.",
-        facts: [["Enquiry", "Reviewed"], ["Quote", "Approved in the demo"], ["Visit", "Thursday · 10:30"], ["Update", "Approved · not sent"]],
+        copy: "The itemised quote, customer acceptance, selected slot and final update now share one visible decision trail. Nothing left this browser.",
+        facts: [["Enquiry", "Reviewed"], ["Quote", "£480 · approved"], ["Visit", "{{slot}}"], ["Update", "Approved · not sent"]],
         next: "Explore the wider example or discuss the workflow you actually use.",
         action: null,
         metrics: { enquiries: [4, "Reviewed and organised"], jobs: [9, "Sample visit now included"], approvals: [3, "Update decision recorded"] },
         workload: { urgent: 1, today: 6, track: 9 },
-        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Scope and price brought together"], ["08:49", "Sample quote approved", "Decision recorded in the demo"], ["08:51", "Sample visit booked", "Thursday at 10:30"], ["08:53", "Customer update approved", "Simulated action · nothing sent"]],
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Itemised price and message ready"], ["08:49", "Quote approved", "Simulated send recorded"], ["09:26", "Customer accepted quote", "{{decision}}"], ["09:29", "Visit booked", "{{slot}}"], ["09:31", "Customer update approved", "Simulated action · nothing sent"]],
       },
     ],
   },
@@ -508,12 +528,53 @@ const journeyConfigs = {
   },
 };
 
+// Richer sector journeys: visible drafts, a real waiting point and a chosen next action.
+Object.assign(journeyConfigs, {
+  salon: {
+    version: "salon-v2",
+    defaultSlot: "Thursday · 18:00",
+    stages: [
+      { label: "Step 1 of 5 · Review", control: "Human decision", title: "Review the new colour enquiry.", copy: "Mia shared her preferred result, availability and colour history. Check the details before drafting a reply.", facts: [["Client", "Mia R."], ["Request", "Balayage consultation"], ["Preference", "Low-maintenance brunette"], ["History", "Previous box colour noted"]], artifact: { type: "evidence", title: "Client context", items: ["2 inspiration photos", "Evening availability", "Patch test required", "Prefers WhatsApp"] }, next: "Prepare the exact consultation reply for review.", action: "Prepare consultation reply", metrics: { enquiries: [7, "One ready to review"], bookings: [12, "Two useful gaps remain"], approvals: [3, "Nothing sends automatically"] }, workload: { urgent: 3, today: 6, track: 9 }, activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"]] },
+      { label: "Step 2 of 5 · Approve", control: "Approval required", title: "Review the consultation reply.", copy: "Check the proposed wording, service boundary and patch-test reminder before anything moves forward.", facts: [["Client", "Mia R."], ["Service", "Colour consultation"], ["Channel", "WhatsApp draft"], ["Status", "Not sent"]], artifact: { type: "message", title: "Consultation reply draft", message: "Hi Mia, thanks for sharing the photos and your colour history. A consultation is the best next step so we can discuss the low-maintenance brunette result and check what is realistic for your hair. A patch test is also required before any colour appointment. If you would like to continue, reply here and we can offer the available evening consultation times." }, next: "Approval simulates sending this reply, then the workflow waits for Mia.", action: "Approve and simulate sending reply", metrics: { enquiries: [6, "Reviewed and organised"], bookings: [12, "Two useful gaps remain"], approvals: [4, "Consultation reply added"] }, workload: { urgent: 3, today: 6, track: 9 }, activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Consultation reply prepared", "Waiting for salon approval"]] },
+      { label: "Step 3 of 5 · Client decision", control: "Waiting state", title: "Wait for Mia—or record a call.", copy: "The reply is simulated as sent. No appointment should be created until Mia confirms she wants the consultation.", facts: [["Status", "Awaiting client"], ["Draft", "Approved in this demo"], ["Channel", "WhatsApp"], ["Chase", "Tomorrow afternoon"]], artifact: { type: "waiting", title: "Client response", message: "No response recorded yet. The diary remains unchanged.", callMessage: "Call route selected. Record Mia’s decision before opening the available consultation times." }, secondaryAction: "Log a client call instead", next: "Record an acceptance from Mia’s reply or from your call.", action: "Simulate Mia accepts", callAction: "Record accepted by phone", metrics: { enquiries: [6, "Reply awaiting a decision"], bookings: [12, "No consultation booked yet"], approvals: [3, "Reply decision recorded"] }, workload: { urgent: 2, today: 7, track: 9 }, activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Consultation reply prepared", "Client context included"], ["09:12", "Reply approved", "Simulated send · awaiting Mia"]] },
+      { label: "Step 4 of 5 · Schedule", control: "Choose a slot", title: "Select an available consultation.", copy: "Mia has accepted. Choose the time that fits both her preference and the salon diary.", facts: [["Client decision", "Accepted in this demo"], ["Service", "Colour consultation"], ["Duration", "30 minutes"], ["Stylist", "Senior colourist"]], artifact: { type: "slots", title: "Available consultations", slots: [["Thursday · 18:00", "Matches evening preference"], ["Friday · 17:30", "Last consultation slot"], ["Saturday · 09:30", "Before first colour booking"]] }, next: "The selected time will be inserted into the client confirmation.", action: "Book selected consultation", metrics: { enquiries: [6, "Client accepted"], bookings: [12, "Consultation ready to book"], approvals: [3, "Client decision recorded"] }, workload: { urgent: 2, today: 7, track: 9 }, activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Reply prepared", "Patch-test reminder included"], ["09:12", "Reply approved", "Simulated send recorded"], ["09:28", "Mia accepted consultation", "{{decision}}"]] },
+      { label: "Step 5 of 5 · Update", control: "Client-facing review", title: "Review the consultation confirmation.", copy: "Check the chosen time, patch-test instruction and actual message before approval.", facts: [["Client", "Mia R."], ["Consultation", "{{slot}}"], ["Channel", "WhatsApp draft"], ["Send rule", "Approval required"]], artifact: { type: "message", title: "Client confirmation draft", message: "Hi Mia, your colour consultation is booked for {{slot}} with our senior colourist. We will discuss your hair history, the result you would like and the maintenance involved. We will also complete the required patch test. Please let us know if you need to change the appointment.", }, next: "Approval records the confirmation. No real message is sent.", action: "Approve simulated confirmation", metrics: { enquiries: [6, "Client accepted"], bookings: [13, "Selected consultation included"], approvals: [4, "Confirmation waiting"] }, workload: { urgent: 2, today: 6, track: 10 }, activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Reply prepared", "Patch-test reminder included"], ["09:12", "Reply approved", "Simulated send recorded"], ["09:28", "Mia accepted consultation", "{{decision}}"], ["09:31", "Consultation booked", "{{slot}}"]] },
+      { label: "Five-step example complete", control: "All decisions recorded", title: "The consultation is ready for the salon diary.", copy: "The enquiry, real draft, client decision, chosen slot and confirmation share one visible trail.", facts: [["Enquiry", "Reviewed"], ["Reply", "Approved"], ["Consultation", "{{slot}}"], ["Confirmation", "Approved · not sent"]], next: "Explore the wider example or discuss your salon workflow.", action: null, metrics: { enquiries: [6, "Reviewed"], bookings: [13, "Consultation included"], approvals: [3, "Decision recorded"] }, workload: { urgent: 1, today: 7, track: 10 }, activities: [["09:06", "Colour enquiry received", "Fictional record"], ["09:10", "Reply prepared", "Context included"], ["09:12", "Reply approved", "Simulated send"], ["09:28", "Client accepted", "{{decision}}"], ["09:31", "Consultation booked", "{{slot}}"], ["09:33", "Confirmation approved", "Nothing sent"]] },
+    ],
+  },
+  safety: {
+    version: "safety-v2",
+    defaultSlot: "Tuesday · 10:30",
+    stages: [
+      { label: "Step 1 of 5 · Review", control: "Admin decision", title: "Review the inspection enquiry.", copy: "Check the site, contact and stated request without making a technical assessment.", facts: [["Client", "North Quay Storage"], ["Request", "Warehouse inspection"], ["Site", "Single-storey unit"], ["Boundary", "Admin triage only"]], artifact: { type: "evidence", title: "Information received", items: ["Site address", "Primary contact", "Preferred week", "General warehouse use"] }, next: "Prepare the missing scope and access questions.", action: "Prepare scope questions", metrics: { enquiries: [6, "Two need clarification"], visits: [4, "Access notes checked"], reviews: [5, "Qualified decision required"] }, workload: { urgent: 4, today: 6, track: 10 }, activities: [["08:18", "Inspection enquiry logged", "Email request · fictional record"]] },
+      { label: "Step 2 of 5 · Clarify", control: "Approval required", title: "Review the scope request.", copy: "The prepared email asks for administrative facts only. It does not contain safety advice.", facts: [["Missing", "Work activity summary"], ["Access", "Induction requirements"], ["Timing", "Operating hours"], ["Boundary", "No technical advice"]], artifact: { type: "message", title: "Client information request", message: "Hello, thank you for your warehouse inspection enquiry. Before an advisor reviews the scope, please confirm the main work activities taking place, normal operating hours, any visitor induction requirements and your preferred inspection week. This request is for administrative scoping only; a competent person will determine the professional requirements." }, next: "Approval simulates sending these questions and pauses for the client’s details.", action: "Approve and simulate sending request", metrics: { enquiries: [5, "Clarification organised"], visits: [4, "No new visit booked"], reviews: [6, "Scope request added"] }, workload: { urgent: 4, today: 6, track: 10 }, activities: [["08:18", "Enquiry logged", "Fictional record"], ["08:24", "Scope request prepared", "Waiting for admin approval"]] },
+      { label: "Step 3 of 5 · Client details", control: "Waiting state", title: "Wait for the details—or record a call.", copy: "The inspection cannot be scheduled until the missing activity and access information is recorded.", facts: [["Status", "Awaiting client"], ["Request", "Simulated as sent"], ["Missing", "Activity and induction details"], ["Chase", "Next working day"]], artifact: { type: "waiting", title: "Scope response", message: "No response recorded. The enquiry remains outside the advisor’s review queue.", callMessage: "Call route selected. Record the administrative details supplied by the client." }, secondaryAction: "Log a client call instead", next: "Record the client response before opening the inspection diary.", action: "Simulate details received", callAction: "Record details from call", metrics: { enquiries: [5, "Waiting for client details"], visits: [4, "No visit booked yet"], reviews: [5, "Professional review not started"] }, workload: { urgent: 3, today: 7, track: 10 }, activities: [["08:18", "Enquiry logged", "Fictional record"], ["08:24", "Questions prepared", "Admin-only request"], ["08:27", "Request approved", "Simulated send · awaiting client"]] },
+      { label: "Step 4 of 5 · Schedule", control: "Choose a slot", title: "Select an inspection slot.", copy: "The client supplied the missing details. Choose a time with the assigned competent person.", facts: [["Scope", "Admin details complete"], ["Advisor", "Competent person assigned"], ["Access", "Induction at reception"], ["Duration", "2 hours"]], artifact: { type: "slots", title: "Advisor availability", slots: [["Tuesday · 10:30", "Advisor and site available"], ["Wednesday · 14:00", "Afternoon inspection"], ["Friday · 09:00", "First visit of the day"]] }, next: "The selected visit creates a review pack for the advisor.", action: "Book selected inspection", metrics: { enquiries: [5, "Details received"], visits: [4, "Inspection ready to book"], reviews: [5, "Professional decision pending"] }, workload: { urgent: 3, today: 7, track: 10 }, activities: [["08:18", "Enquiry logged", "Fictional record"], ["08:24", "Questions prepared", "Admin-only"], ["08:27", "Request approved", "Simulated send"], ["09:04", "Client details received", "{{decision}}"]] },
+      { label: "Step 5 of 5 · Route", control: "Professional boundary", title: "Review the advisor pack and assign it.", copy: "Confirm that the pack contains context—not findings, advice or regulated documents.", facts: [["Visit", "{{slot}}"], ["Reviewer", "Assigned competent person"], ["Status", "Professional review required"], ["Boundary", "No automated judgement"]], artifact: { type: "evidence", title: "Administrative review pack", items: ["Client and site contacts", "Work activity summary", "Access and induction notes", "Selected visit time", "Original enquiry attached", "No technical conclusions"] }, next: "Routing records ownership. The competent person still makes every technical decision.", action: "Route for professional review", metrics: { enquiries: [5, "Details received"], visits: [5, "Selected inspection included"], reviews: [6, "Review pack waiting"] }, workload: { urgent: 3, today: 6, track: 11 }, activities: [["08:18", "Enquiry logged", "Fictional record"], ["08:24", "Questions prepared", "Admin-only"], ["08:27", "Request approved", "Simulated send"], ["09:04", "Client details received", "{{decision}}"], ["09:08", "Inspection booked", "{{slot}}"]] },
+      { label: "Five-step example complete", control: "Professional review required", title: "The enquiry is ready for qualified review.", copy: "The real questions, client response, selected visit and administrative pack share one visible trail.", facts: [["Enquiry", "Admin-reviewed"], ["Details", "Received"], ["Visit", "{{slot}}"], ["Review", "Assigned · not completed"]], next: "Explore the wider example or discuss your administration workflow.", action: null, metrics: { enquiries: [5, "Clarified"], visits: [5, "Inspection included"], reviews: [6, "Qualified review required"] }, workload: { urgent: 2, today: 7, track: 11 }, activities: [["08:18", "Enquiry logged", "Fictional record"], ["08:24", "Questions prepared", "Admin-only"], ["08:27", "Request approved", "Simulated send"], ["09:04", "Details received", "{{decision}}"], ["09:08", "Inspection booked", "{{slot}}"], ["09:10", "Review pack assigned", "Competent person required"]] },
+    ],
+  },
+  realestate: {
+    version: "realestate-v2",
+    defaultSlot: "Quinta-feira · 15:00",
+    ui: { workload: ({ urgent, today, track }) => `Trabalho de exemplo: ${urgent} urgentes, ${today} para hoje e ${track} controlados`, completeAnnouncement: "Exemplo concluído. Todas as decisões simuladas ficaram registadas.", completeToast: "Exemplo concluído · nada foi enviado", stepToast: (step) => `Passo ${step} concluído · ação simulada`, explore: "Explorar o painel completo", hideExplore: "Ocultar o painel completo", decisionPhone: "Aceite por telefone", decisionReply: "Aceite por resposta simulada" },
+    stages: [
+      { label: "Passo 1 de 5 · Analisar", control: "Decisão humana", title: "Analise o novo pedido de visita.", copy: "Confirme o contacto, imóvel, questão e disponibilidade antes de preparar uma resposta.", facts: [["Contacto", "António Almeida"], ["Imóvel", "LC-204 · T3 Cascais"], ["Preferência", "Depois das 15h"], ["Origem", "Idealista · fictício"]], artifact: { type: "evidence", title: "Contexto do contacto", items: ["Pergunta sobre estacionamento", "Pretende visitar esta semana", "Telefone confirmado", "Ficha do imóvel disponível"] }, next: "Preparar a resposta completa para revisão do agente.", action: "Preparar resposta", metrics: { leads: [8, "Um pronto para analisar"], visits: [3, "Duas em Cascais"], approvals: [4, "Nada é enviado automaticamente"] }, workload: { urgent: 3, today: 6, track: 9 }, activities: [["09:12", "Pedido de visita recebido", "Idealista · registo fictício"]] },
+      { label: "Passo 2 de 5 · Aprovar", control: "Aprovação necessária", title: "Reveja a resposta preparada.", copy: "Confirme o imóvel, a resposta à questão e o pedido de disponibilidade antes do envio simulado.", facts: [["Contacto", "António Almeida"], ["Imóvel", "LC-204"], ["Canal", "Email"], ["Estado", "Rascunho · não enviado"]], artifact: { type: "message", title: "Resposta ao pedido de visita", editorLabel: "Mensagem preparada — reveja ou edite antes de aprovar", message: "Exmo. Sr. Almeida, obrigado pelo seu interesse no T3 em Cascais (ref. LC-204). O imóvel inclui um lugar de estacionamento. Temos disponibilidade para visitas esta semana depois das 15h. Se pretender avançar, confirme por favor e apresentaremos os horários ainda disponíveis." }, next: "A aprovação simula o envio e coloca o contacto em espera.", action: "Aprovar e simular envio", metrics: { leads: [7, "Contacto analisado"], visits: [3, "Sem nova visita"], approvals: [5, "Resposta adicionada"] }, workload: { urgent: 3, today: 6, track: 9 }, activities: [["09:12", "Pedido recebido", "Registo fictício"], ["09:16", "Resposta preparada", "A aguardar aprovação"]] },
+      { label: "Passo 3 de 5 · Decisão", control: "Estado de espera", title: "Aguarde pelo contacto — ou registe uma chamada.", copy: "A visita não deve ser marcada até o contacto confirmar que pretende avançar.", facts: [["Estado", "A aguardar contacto"], ["Resposta", "Envio simulado"], ["Imóvel", "LC-204"], ["Seguimento", "Amanhã de manhã"]], artifact: { type: "waiting", title: "Resposta do contacto", statusLabel: "A aguardar contacto", callLabel: "Chamada ao contacto", message: "Ainda não existe resposta. A agenda permanece inalterada.", callMessage: "Via de chamada selecionada. Registe a decisão antes de abrir os horários." }, secondaryAction: "Registar uma chamada", secondaryUndo: "Usar resposta simulada", next: "Registe a aceitação por resposta ou por chamada.", action: "Simular aceitação do contacto", callAction: "Registar aceitação por telefone", metrics: { leads: [7, "Resposta a aguardar decisão"], visits: [3, "Nenhuma visita marcada"], approvals: [4, "Resposta aprovada"] }, workload: { urgent: 2, today: 7, track: 9 }, activities: [["09:12", "Pedido recebido", "Registo fictício"], ["09:16", "Resposta preparada", "Imóvel e questão reunidos"], ["09:18", "Resposta aprovada", "Envio simulado · a aguardar"]] },
+      { label: "Passo 4 de 5 · Marcar", control: "Escolher horário", title: "Escolha um horário disponível.", copy: "O contacto aceitou. Compare as opções da agenda e selecione a visita.", facts: [["Decisão", "Aceite nesta demonstração"], ["Imóvel", "LC-204"], ["Duração", "45 minutos"], ["Agente", "Inês Costa"]], artifact: { type: "slots", title: "Horários disponíveis", legend: "Selecione um horário", slots: [["Quinta-feira · 15:00", "Preferência do contacto"], ["Quinta-feira · 16:30", "Após visita em Oeiras"], ["Sexta-feira · 17:00", "Última visita do dia"]] }, next: "O horário escolhido será incluído na confirmação.", action: "Marcar horário selecionado", metrics: { leads: [7, "Contacto aceitou"], visits: [3, "Visita pronta para marcar"], approvals: [4, "Decisão registada"] }, workload: { urgent: 2, today: 7, track: 9 }, activities: [["09:12", "Pedido recebido", "Fictício"], ["09:16", "Resposta preparada", "Contexto reunido"], ["09:18", "Resposta aprovada", "Envio simulado"], ["09:34", "Contacto aceitou", "{{decision}}"]] },
+      { label: "Passo 5 de 5 · Confirmar", control: "Revisão dirigida ao cliente", title: "Reveja a confirmação da visita.", copy: "Confirme destinatário, imóvel, horário e mensagem antes da aprovação final.", facts: [["Destinatário", "António Almeida"], ["Visita", "{{slot}}"], ["Imóvel", "LC-204"], ["Regra", "Aprovação necessária"]], artifact: { type: "message", title: "Confirmação da visita", editorLabel: "Mensagem preparada — reveja ou edite antes de aprovar", message: "Exmo. Sr. Almeida, confirmo a visita ao T3 em Cascais (ref. LC-204) para {{slot}}. A ficha do imóvel segue associada a esta confirmação. Encontramo-nos junto à entrada principal; caso surja algum imprevisto, agradeço que nos informe." }, next: "A aprovação regista a confirmação. Nenhuma mensagem real é enviada.", action: "Aprovar confirmação simulada", metrics: { leads: [7, "Contacto aceitou"], visits: [4, "Visita selecionada incluída"], approvals: [5, "Confirmação a aguardar"] }, workload: { urgent: 2, today: 6, track: 10 }, activities: [["09:12", "Pedido recebido", "Fictício"], ["09:16", "Resposta preparada", "Contexto reunido"], ["09:18", "Resposta aprovada", "Envio simulado"], ["09:34", "Contacto aceitou", "{{decision}}"], ["09:36", "Visita marcada", "{{slot}}"]] },
+      { label: "Exemplo de cinco passos concluído", control: "Todas as decisões registadas", title: "O pedido de visita está organizado.", copy: "A resposta real, decisão do contacto, horário escolhido e confirmação partilham um histórico visível.", facts: [["Contacto", "Analisado"], ["Resposta", "Aprovada"], ["Visita", "{{slot}}"], ["Confirmação", "Aprovada · não enviada"]], next: "Explore o exemplo completo ou fale connosco sobre o seu processo.", action: null, metrics: { leads: [7, "Analisado"], visits: [4, "Visita incluída"], approvals: [4, "Decisão registada"] }, workload: { urgent: 1, today: 7, track: 10 }, activities: [["09:12", "Pedido recebido", "Fictício"], ["09:16", "Resposta preparada", "Contexto"], ["09:18", "Resposta aprovada", "Simulado"], ["09:34", "Contacto aceitou", "{{decision}}"], ["09:36", "Visita marcada", "{{slot}}"], ["09:38", "Confirmação aprovada", "Nada enviado"]] },
+    ],
+  },
+});
+
 const journeyRoot = document.querySelector("[data-flagship-journey]");
 if (journeyRoot) {
   const config = journeyConfigs[journeyRoot.dataset.scenario];
   const journeyUi = {
     workload: ({ urgent, today, track }) => `Example workload: ${urgent} urgent, ${today} due today and ${track} on track`,
-    completeAnnouncement: "Example complete. All four simulated decisions are recorded.",
+    completeAnnouncement: "Example complete. All simulated decisions are recorded.",
     completeToast: "Example complete · nothing was sent",
     stepToast: (step) => `Step ${step} completed · simulated action`,
     explore: "Explore the wider dashboard",
@@ -526,6 +587,8 @@ if (journeyRoot) {
   const stepCopy = journeyRoot.querySelector("[data-step-copy]");
   const stepFacts = journeyRoot.querySelector("[data-step-facts]");
   const stepNext = journeyRoot.querySelector("[data-step-next]");
+  const artifactRoot = journeyRoot.querySelector("[data-journey-artifact]");
+  const choicesRoot = journeyRoot.querySelector("[data-journey-choices]");
   const actionButton = journeyRoot.querySelector("[data-journey-action]");
   const resetButton = journeyRoot.querySelector("[data-journey-reset]");
   const statusMessage = journeyRoot.querySelector("[data-journey-status]");
@@ -535,8 +598,15 @@ if (journeyRoot) {
   const conversionPanel = document.querySelector("[data-conversion-panel]");
   const exploreButton = journeyRoot.querySelector("[data-explore-toggle]");
   const fullExample = journeyRoot.querySelector("[data-full-example]");
-  const storedStep = Number(getState().journeyStep);
+  const storedState = getState();
+  const storedStep = Number(storedState.journeyVersion === config.version || !config.version ? storedState.journeyStep : 0);
   let journeyStep = Number.isInteger(storedStep) ? Math.max(0, Math.min(storedStep, config.stages.length - 1)) : 0;
+  let callMode = Boolean(storedState.callMode);
+  let selectedSlot = storedState.journeySlot || config.defaultSlot || "Thursday · 10:30";
+
+  const resolveText = (value) => String(value)
+    .replaceAll("{{slot}}", selectedSlot)
+    .replaceAll("{{decision}}", callMode ? (config.ui?.decisionPhone || "Accepted by phone") : (config.ui?.decisionReply || "Accepted via simulated reply"));
 
   const renderPairs = (container, pairs, termTag, detailTag) => {
     container.textContent = "";
@@ -545,10 +615,82 @@ if (journeyRoot) {
       const termNode = document.createElement(termTag);
       const detailNode = document.createElement(detailTag);
       termNode.textContent = term;
-      detailNode.textContent = detail;
+      detailNode.textContent = resolveText(detail);
       wrapper.append(termNode, detailNode);
       container.append(wrapper);
     });
+  };
+
+  const renderArtifact = (artifact) => {
+    if (!artifactRoot) return;
+    artifactRoot.textContent = "";
+    artifactRoot.hidden = !artifact;
+    if (!artifact) return;
+    const heading = document.createElement("h4");
+    heading.textContent = artifact.title;
+    artifactRoot.append(heading);
+
+    if (artifact.type === "evidence") {
+      const list = document.createElement("ul");
+      artifact.items.forEach((value) => { const item = document.createElement("li"); item.textContent = value; list.append(item); });
+      artifactRoot.append(list);
+    }
+
+    if (artifact.type === "quote") {
+      const table = document.createElement("table");
+      table.innerHTML = "<thead><tr><th>Item</th><th>Basis</th><th>Price</th></tr></thead>";
+      const body = document.createElement("tbody");
+      artifact.lines.forEach((line) => { const row = document.createElement("tr"); line.forEach((value) => { const cell = document.createElement("td"); cell.textContent = value; row.append(cell); }); body.append(row); });
+      table.append(body);
+      const total = document.createElement("p");
+      total.className = "quote-total";
+      total.innerHTML = `<span>Sample total</span><strong>${artifact.total}</strong>`;
+      const message = document.createElement("div");
+      message.className = "message-preview";
+      message.innerHTML = "<strong>Customer message draft</strong>";
+      const copy = document.createElement("p");
+      copy.textContent = artifact.message;
+      message.append(copy);
+      artifactRoot.append(table, total, message);
+    }
+
+    if (artifact.type === "waiting") {
+      const status = document.createElement("div");
+      status.className = "waiting-state";
+      status.innerHTML = `<span aria-hidden="true">◷</span><p><strong>${callMode ? (artifact.callLabel || "Customer call") : (artifact.statusLabel || "Awaiting customer")}</strong><small>${callMode ? artifact.callMessage : artifact.message}</small></p>`;
+      artifactRoot.append(status);
+    }
+
+    if (artifact.type === "slots") {
+      const fieldset = document.createElement("fieldset");
+      fieldset.className = "slot-options";
+      fieldset.innerHTML = `<legend>${artifact.legend || "Select one available slot"}</legend>`;
+      artifact.slots.forEach(([slot, note], index) => {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "journey-slot";
+        input.value = slot;
+        input.checked = selectedSlot === slot || (!artifact.slots.some(([value]) => value === selectedSlot) && index === 0);
+        input.addEventListener("change", () => { selectedSlot = input.value; });
+        const copy = document.createElement("span");
+        copy.innerHTML = `<strong>${slot}</strong><small>${note}</small>`;
+        label.append(input, copy);
+        fieldset.append(label);
+      });
+      artifactRoot.append(fieldset);
+    }
+
+    if (artifact.type === "message") {
+      const label = document.createElement("label");
+      label.className = "message-editor";
+      label.innerHTML = `<strong>${artifact.editorLabel || "Prepared message—review or edit before approval"}</strong>`;
+      const textarea = document.createElement("textarea");
+      textarea.rows = 6;
+      textarea.value = resolveText(artifact.message);
+      label.append(textarea);
+      artifactRoot.append(label);
+    }
   };
 
   const renderJourney = (announce = false) => {
@@ -559,6 +701,27 @@ if (journeyRoot) {
     stepCopy.textContent = state.copy;
     stepNext.textContent = state.next;
     renderPairs(stepFacts, state.facts, "dt", "dd");
+    renderArtifact(state.artifact);
+
+    if (choicesRoot) {
+      choicesRoot.textContent = "";
+      choicesRoot.hidden = !state.secondaryAction;
+      if (state.secondaryAction) {
+        const secondary = document.createElement("button");
+        secondary.type = "button";
+        secondary.textContent = callMode ? (state.secondaryUndo || "Use simulated incoming reply instead") : state.secondaryAction;
+        secondary.addEventListener("click", () => {
+          callMode = !callMode;
+          const current = getState();
+          current.callMode = callMode;
+          current.journeyVersion = config.version;
+          saveState(current);
+          renderJourney(true);
+          actionButton.focus();
+        });
+        choicesRoot.append(secondary);
+      }
+    }
 
     Object.entries(state.metrics).forEach(([key, [value, note]]) => {
       journeyRoot.querySelector(`[data-metric-value="${key}"]`).textContent = value;
@@ -591,7 +754,7 @@ if (journeyRoot) {
       const detailNode = document.createElement("small");
       timeNode.textContent = time;
       titleNode.textContent = title;
-      detailNode.textContent = detail;
+      detailNode.textContent = resolveText(detail);
       copyNode.append(titleNode, detailNode);
       item.append(timeNode, copyNode);
       activityList.append(item);
@@ -599,7 +762,7 @@ if (journeyRoot) {
 
     const finished = journeyStep === config.stages.length - 1;
     actionButton.hidden = finished;
-    actionButton.textContent = state.action || "";
+    actionButton.textContent = callMode && state.callAction ? state.callAction : (state.action || "");
     completePanel.hidden = !finished;
     conversionPanel.hidden = journeyStep === 0;
     if (announce) statusMessage.textContent = finished ? journeyUi.completeAnnouncement : `${state.label}. ${state.title}`;
@@ -607,9 +770,18 @@ if (journeyRoot) {
 
   actionButton.addEventListener("click", () => {
     if (journeyStep >= config.stages.length - 1) return;
+    const currentState = config.stages[journeyStep];
+    if (currentState.artifact?.type === "slots") {
+      const picked = journeyRoot.querySelector('input[name="journey-slot"]:checked');
+      if (!picked) { statusMessage.textContent = "Choose an available slot before continuing."; return; }
+      selectedSlot = picked.value;
+    }
     journeyStep += 1;
     const current = getState();
     current.journeyStep = journeyStep;
+    current.journeyVersion = config.version;
+    current.journeySlot = selectedSlot;
+    current.callMode = callMode;
     saveState(current);
     renderJourney(true);
     showToast(journeyStep === config.stages.length - 1 ? journeyUi.completeToast : journeyUi.stepToast(journeyStep));
@@ -617,6 +789,8 @@ if (journeyRoot) {
 
   resetButton.addEventListener("click", () => {
     journeyStep = 0;
+    callMode = false;
+    selectedSlot = config.defaultSlot || "Thursday · 10:30";
     try { sessionStorage.removeItem(stateKey); } catch { /* no-op */ }
     fullExample.hidden = true;
     exploreButton.setAttribute("aria-expanded", "false");
@@ -638,8 +812,8 @@ if (journeyRoot) {
   if (new URLSearchParams(window.location.search).get("tour") === "1") {
     requestAnimationFrame(() => {
       journeyRoot.querySelector(".journey-focus").scrollIntoView({ behavior: "auto", block: "start" });
-      if (actionButton.hidden) journeyRoot.querySelector("#journey-title").focus({ preventScroll: true });
-      else actionButton.focus({ preventScroll: true });
+      stepTitle.tabIndex = -1;
+      stepTitle.focus({ preventScroll: true });
     });
   }
 }

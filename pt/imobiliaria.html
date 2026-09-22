@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow" />
   <meta name="description" content="Percurso fictício e autónomo que mostra como uma consola imobiliária pode organizar um contacto, resposta, visita e confirmação sob aprovação humana." />
   <meta property="og:title" content="Costa Lima Consola Imobiliária | Demonstração de conceito" />
-  <meta property="og:description" content="Experimente um percurso fictício em quatro passos, com contexto e aprovação humana." />
+  <meta property="og:description" content="Experimente um percurso fictício com resposta visível, decisão do contacto, horário escolhido e aprovação humana." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/pt/imobiliaria.html" />
   <meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles.css?v=3" />
 </head>
 <body class="theme-realestate flagship-demo" data-demo-page="realestate" data-demo-label="Costa Lima Consola Imobiliária" data-inline-conversion>
   <div class="shell">
@@ -42,7 +42,7 @@
           <p class="concept-status"><span aria-hidden="true">●</span> Demonstração de conceito · dados fictícios · ações simuladas</p>
           <p class="eyebrow">Mediação imobiliária</p>
           <h1 id="property-title">Costa Lima <em>Consola Imobiliária</em></h1>
-          <p>Faça avançar um pedido de visita desde a análise até à confirmação aprovada. Quatro ações curtas mostram o percurso; nada é enviado.</p>
+          <p>Acompanhe um pedido de visita através da resposta preparada, decisão do contacto, horário escolhido e confirmação aprovada. Nada é enviado.</p>
         </div>
         <a class="button-link" href="#como-funciona">Como funciona este exemplo</a>
       </section>
@@ -59,22 +59,25 @@
           <article><span>A aguardar aprovação</span><strong data-metric-value="approvals">4</strong><small data-metric-note="approvals">Nada é enviado automaticamente</small></article>
         </div>
 
-        <ol class="journey-pipeline" aria-label="Percurso do pedido de visita">
+        <ol class="journey-pipeline five-stage" aria-label="Percurso do pedido de visita">
           <li data-pipeline-step="0"><span>1</span><strong>Analisar</strong><small>Contacto</small></li>
           <li data-pipeline-step="1"><span>2</span><strong>Aprovar</strong><small>Resposta</small></li>
-          <li data-pipeline-step="2"><span>3</span><strong>Marcar</strong><small>Visita</small></li>
-          <li data-pipeline-step="3"><span>4</span><strong>Confirmar</strong><small>Cliente</small></li>
+          <li data-pipeline-step="2"><span>3</span><strong>Contacto</strong><small>Decisão</small></li>
+          <li data-pipeline-step="3"><span>4</span><strong>Marcar</strong><small>Visita</small></li>
+          <li data-pipeline-step="4"><span>5</span><strong>Confirmar</strong><small>Cliente</small></li>
         </ol>
 
         <div class="journey-layout">
           <section class="journey-focus" aria-labelledby="journey-step-title">
-            <div class="step-heading"><p data-step-label>Passo 1 de 4 · Analisar</p><span data-step-control>Decisão humana</span></div>
+            <div class="step-heading"><p data-step-label>Passo 1 de 5 · Analisar</p><span data-step-control>Decisão humana</span></div>
             <h3 id="journey-step-title" data-step-title>Analise o novo pedido de visita.</h3>
             <p class="step-copy" data-step-copy>O contacto indicou o imóvel, o horário preferido e uma questão. Confirme os dados úteis antes de preparar a resposta.</p>
             <dl class="enquiry-facts" data-step-facts>
               <div><dt>Contacto</dt><dd>António Almeida</dd></div><div><dt>Imóvel</dt><dd>LC-204 · T3 Cascais</dd></div><div><dt>Preferência</dt><dd>Quinta-feira depois das 15h</dd></div><div><dt>Origem</dt><dd>Idealista · registo fictício</dd></div>
             </dl>
+            <section class="journey-artifact" data-journey-artifact hidden aria-live="polite"></section>
             <div class="next-change"><span aria-hidden="true">→</span><p><strong>O que muda a seguir</strong><span data-step-next>Uma resposta fica preparada para aprovação. Ainda não pode ser enviada.</span></p></div>
+            <div class="journey-choice-row" data-journey-choices hidden></div>
             <button class="journey-primary" type="button" data-journey-action>Preparar resposta</button>
             <p class="action-reassurance"><span aria-hidden="true">⌁</span> Esta ação altera apenas o painel fictício no seu navegador.</p>
             <p class="sr-only" data-journey-status role="status" aria-live="polite"></p>
@@ -123,6 +126,6 @@
 
     <footer class="footer"><span>Apenas demonstração de conceito · dados fictícios e ações simuladas, não resultados de clientes.</span><span><a href="./index.html#demos">Outros exemplos</a> · <a href="https://roupicogroup.com/">Visite roupicogroup.com</a></span></footer>
   </div>
-  <script src="../demo.js" defer></script>
+  <script src="../demo.js?v=3" defer></script>
 </body>
 </html>

@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=3" />
 </head>
 <body class="theme-salon flagship-demo" data-demo-page="salon" data-demo-label="Glow Studio Control Console" data-inline-conversion>
   <div class="shell">
@@ -42,7 +42,7 @@
           <p class="concept-status"><span aria-hidden="true">●</span> Concept demo · fictional data · simulated actions</p>
           <p class="eyebrow">Salon / beauty business</p>
           <h1 id="salon-title">Glow Studio <em>Control Console</em></h1>
-          <p>Move one colour enquiry from first review to an approved appointment confirmation. Four short actions show the workflow; nothing is sent.</p>
+          <p>Follow one colour enquiry through a drafted reply, client decision, chosen consultation slot and approved confirmation. Nothing is sent.</p>
         </div>
         <a class="button-link" href="#how-it-works">How this example works</a>
       </section>
@@ -59,22 +59,25 @@
           <article><span>Awaiting approval</span><strong data-metric-value="approvals">3</strong><small data-metric-note="approvals">Nothing sends automatically</small></article>
         </div>
 
-        <ol class="journey-pipeline" aria-label="Client enquiry workflow">
+        <ol class="journey-pipeline five-stage" aria-label="Client enquiry workflow">
           <li data-pipeline-step="0"><span>1</span><strong>Review</strong><small>Enquiry</small></li>
           <li data-pipeline-step="1"><span>2</span><strong>Approve</strong><small>Reply</small></li>
-          <li data-pipeline-step="2"><span>3</span><strong>Book</strong><small>Consult</small></li>
-          <li data-pipeline-step="3"><span>4</span><strong>Update</strong><small>Client</small></li>
+          <li data-pipeline-step="2"><span>3</span><strong>Client</strong><small>Decision</small></li>
+          <li data-pipeline-step="3"><span>4</span><strong>Book</strong><small>Consult</small></li>
+          <li data-pipeline-step="4"><span>5</span><strong>Update</strong><small>Client</small></li>
         </ol>
 
         <div class="journey-layout">
           <section class="journey-focus" aria-labelledby="journey-step-title">
-            <div class="step-heading"><p data-step-label>Step 1 of 4 · Review</p><span data-step-control>Human decision</span></div>
+            <div class="step-heading"><p data-step-label>Step 1 of 5 · Review</p><span data-step-control>Human decision</span></div>
             <h3 id="journey-step-title" data-step-title>Review the new colour enquiry.</h3>
             <p class="step-copy" data-step-copy>Mia shared her preferred result, availability and colour history. Check the useful details before preparing a reply.</p>
             <dl class="enquiry-facts" data-step-facts>
               <div><dt>Client</dt><dd>Mia R.</dd></div><div><dt>Request</dt><dd>Balayage consultation</dd></div><div><dt>Preference</dt><dd>Low-maintenance brunette</dd></div><div><dt>Availability</dt><dd>Thursday evening</dd></div>
             </dl>
+            <section class="journey-artifact" data-journey-artifact hidden aria-live="polite"></section>
             <div class="next-change"><span aria-hidden="true">→</span><p><strong>What changes next</strong><span data-step-next>A consultation reply moves into the approval queue. It still cannot be sent.</span></p></div>
+            <div class="journey-choice-row" data-journey-choices hidden></div>
             <button class="journey-primary" type="button" data-journey-action>Prepare consultation reply</button>
             <p class="action-reassurance"><span aria-hidden="true">⌁</span> This only changes the fictional dashboard in your browser.</p>
             <p class="sr-only" data-journey-status role="status" aria-live="polite"></p>
@@ -123,6 +126,6 @@
 
     <footer class="footer"><span>Concept demo only · fictional data and simulated actions, not client results.</span><span><a href="./index.html#examples">Other examples</a> · <a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
   </div>
-  <script src="./demo.js" defer></script>
+  <script src="./demo.js?v=3" defer></script>
 </body>
 </html>
