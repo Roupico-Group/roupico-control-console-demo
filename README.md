@@ -2,7 +2,7 @@
 
 Interactive concept demos showing how a tailored control console could bring business tasks, approvals and follow-up workflows into one clearer place.
 
-Redesign prepared 2026-09-22: the overview and all four sector examples now use the same self-guided visual system. Each four-stage journey updates a visible pipeline, workload figures and activity trail entirely in the visitor's browser, while retaining a sector-specific workflow and explicit human-approval boundaries.
+Redesign published 2026-09-22: the overview and all four sector examples now use the same self-guided visual system. Each four-stage journey updates a visible pipeline, workload figures and activity trail entirely in the visitor's browser, while retaining a sector-specific workflow and explicit human-approval boundaries.
 
 ## Demo sectors
 
