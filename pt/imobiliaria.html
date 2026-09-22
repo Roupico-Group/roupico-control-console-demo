@@ -4,254 +4,124 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
-  <meta name="description" content="Demonstração interativa de uma consola para visitas, contactos, imóveis e emails sob aprovação do agente." />
-  <meta property="og:title" content="Consola Imobiliária — demonstração de conceito" /><meta property="og:description" content="Explore visitas, imóveis e emails preparados para aprovação humana." /><meta property="og:type" content="website" /><meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/pt/imobiliaria.html" /><meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
-  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Consola Imobiliária — demonstração de conceito" /><meta name="twitter:description" content="Visitas, imóveis e seguimentos sob controlo humano." /><meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="description" content="Percurso fictício e autónomo que mostra como uma consola imobiliária pode organizar um contacto, resposta, visita e confirmação sob aprovação humana." />
+  <meta property="og:title" content="Costa Lima Consola Imobiliária | Demonstração de conceito" />
+  <meta property="og:description" content="Experimente um percurso fictício em quatro passos, com contexto e aprovação humana." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/pt/imobiliaria.html" />
+  <meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Costa Lima Consola Imobiliária | Demonstração de conceito" />
+  <meta name="twitter:description" content="Um percurso fictício para mediação imobiliária, sempre sob controlo humano." />
+  <meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
   <title>Costa Lima Consola Imobiliária | Demonstração de conceito</title>
   <link rel="icon" href="../logo-header.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
 </head>
-<body class="theme-realestate" data-demo-page="realestate" data-demo-label="Consola Imobiliária">
-  <div class="shell" data-demo-tabs>
-    <header class="topbar">
-      <a class="brand" href="./index.html">
+<body class="theme-realestate flagship-demo" data-demo-page="realestate" data-demo-label="Costa Lima Consola Imobiliária" data-inline-conversion>
+  <div class="shell">
+    <header class="topbar phase-one-topbar">
+      <a class="brand" href="./index.html" aria-label="Visão geral das demonstrações">
         <img class="brand-logo" src="../logo-header.png" alt="" width="682" height="723" />
         <span><strong>Roupiço Group</strong> Demonstração de conceito</span>
       </a>
       <nav class="top-links" aria-label="Navegação das demonstrações">
-        <a href="./index.html">Início</a>
+        <a href="./index.html">Visão geral</a>
+        <a class="nav-primary" aria-current="page" href="./imobiliaria.html?tour=1">Experimentar</a>
+        <a href="./index.html#demos">Outros exemplos</a>
         <a class="lang-link" href="../index.html" lang="en" hreflang="en-GB">English</a>
       </nav>
     </header>
 
-    <main class="dashboard-shell">
-      <section class="business-head" data-tour-target="pt-customise">
-        <div class="icon-tile" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
-        </div>
+    <main>
+      <section class="flagship-intro" aria-labelledby="property-title">
         <div>
+          <p class="concept-status"><span aria-hidden="true">●</span> Demonstração de conceito · dados fictícios · ações simuladas</p>
           <p class="eyebrow">Mediação imobiliária</p>
-          <h1>Costa Lima Consola Imobiliária</h1>
-          <p>Painel de exemplo para as visitas do dia, as mensagens por responder, os imóveis e o envio de emails.</p>
+          <h1 id="property-title">Costa Lima <em>Consola Imobiliária</em></h1>
+          <p>Faça avançar um pedido de visita desde a análise até à confirmação aprovada. Quatro ações curtas mostram o percurso; nada é enviado.</p>
         </div>
-        <span class="status-pill good">Demonstração de conceito</span>
+        <a class="button-link" href="#como-funciona">Como funciona este exemplo</a>
       </section>
 
-      <section class="tour-launch">
-        <div><p class="eyebrow">Visita guiada recomendada</p><h2>Conheça a consola em cerca de dois minutos.</h2><p>Dez explicações breves e ações guiadas. Tudo é simulado e pode repor a demonstração quando quiser.</p></div>
-        <div class="tour-launch-actions"><button class="button-link primary" type="button" data-tour-start>Iniciar visita guiada</button><button class="button-link" type="button" data-demo-reset>Repor demo</button></div>
-      </section>
-
-      <section class="help-strip" aria-label="Para que serve esta demonstração">
-        <div class="help-item"><strong>Responder mais depressa</strong><span>Trate os contactos do Idealista, Imovirtual, Casa SAPO e WhatsApp sem abrir cada portal.</span></div>
-        <div class="help-item"><strong>Tudo num só lugar</strong><span>Visitas, mensagens e imóveis a atualizar numa só vista, todas as manhãs.</span></div>
-        <div class="help-item"><strong>Mantenha o controlo</strong><span>Emails, propostas e anúncios aguardam a sua aprovação antes de saírem.</span></div>
-      </section>
-
-      <div class="tabs" role="tablist" aria-label="Ecrãs da demonstração imobiliária">
-        <button class="active" type="button" data-tab-target="hoje" aria-selected="true">Hoje</button>
-        <button type="button" data-tab-target="imoveis" aria-selected="false">Imóveis</button>
-        <button type="button" data-tab-target="email" aria-selected="false">Email</button>
-      </div>
-
-      <section class="screen active" data-tab-panel="hoje">
-        <div class="screen-grid">
-          <article class="panel span-4" data-tour-target="pt-metrics">
-            <div class="metric"><span>Visitas hoje</span><strong>3</strong><small>2 Cascais, 1 Oeiras</small></div>
-          </article>
-          <article class="panel span-4">
-            <div class="metric"><span>Mensagens por responder</span><strong>8</strong><small>Idealista, WhatsApp, email</small></div>
-          </article>
-          <article class="panel span-4">
-            <div class="metric"><span>Imóveis a atualizar</span><strong>4</strong><small>Preço, fotografias, destaque no portal</small></div>
-          </article>
-
-          <article class="panel span-7" data-tour-target="pt-schedule">
-            <div class="panel-title"><h2>Agenda de visitas</h2><span class="status-pill good">hoje · resumo</span></div>
-            <div class="calendar-strip">
-              <span><strong>10:00</strong><small>T2 Oeiras</small></span>
-              <span><strong>11:30</strong><small>Avaliação Lisboa</small></span>
-              <span><strong>13:00</strong><small>Livre</small></span>
-              <span class="active"><strong>15:00</strong><small>T3 Cascais</small></span>
-              <span><strong>16:30</strong><small>T1 Lisboa</small></span>
-              <span><strong>18:00</strong><small>Reunião CPCV</small></span>
-            </div>
-          </article>
-
-          <article class="panel span-5" data-tour-target="pt-sources">
-            <div class="panel-title"><h2>De onde vieram os contactos</h2></div>
-            <div class="chart-bars">
-              <div style="min-height:140px" data-label="Idealista"></div>
-              <div style="min-height:104px" data-label="Imovirtual"></div>
-              <div style="min-height:82px" data-label="Casa SAPO"></div>
-              <div style="min-height:60px" data-label="Site"></div>
-              <div style="min-height:90px" data-label="Telefone"></div>
-            </div>
-          </article>
-
-          <article class="panel span-7" data-tour-target="pt-responses">
-            <div class="panel-title"><h2>A precisar de resposta</h2></div>
-            <div class="lane-list">
-              <div class="lane"><div><strong>Pedido de visita</strong><span>Contacto do Idealista para o T2 em Cascais — pede horário ao fim do dia.</span></div><div class="lane-actions"><span class="status-pill warn">rascunho de resposta</span><button type="button">Responder</button><button type="button">Propor horário</button></div></div>
-              <div class="lane"><div><strong>Pedido de avaliação</strong><span>Proprietário de uma moradia em Oeiras pretende saber o valor de mercado.</span></div><div class="lane-actions"><span class="status-pill good">pronto</span><button type="button">Marcar avaliação</button></div></div>
-              <div class="lane"><div><strong>Documentos para CPCV</strong><span>Falta o comprovativo de morada do comprador para avançar.</span></div><div class="lane-actions"><span class="status-pill">a aguardar</span><button type="button">Pedir documento</button></div></div>
-            </div>
-          </article>
-
-          <article class="panel span-12" data-tour-target="pt-followups">
-            <div class="panel-title"><h2>Para não esquecer</h2><span class="status-pill warn">deteta o que costuma escapar</span></div>
-            <div class="lane-list">
-              <div class="lane"><div><strong>Contactos sem resposta há mais de 24h</strong><span>Mensagens do Idealista e do WhatsApp que continuam por responder.</span></div><div class="lane-actions"><span class="status-pill warn">3 a recuperar</span><button type="button">Responder agora</button></div></div>
-              <div class="lane"><div><strong>Visitas sem seguimento</strong><span>Visitas da semana passada que nunca receberam um segundo contacto.</span></div><div class="lane-actions"><span class="status-pill warn">2</span><button type="button">Dar seguimento</button></div></div>
-              <div class="lane"><div><strong>Anúncios a expirar nos portais</strong><span>Imóveis cujo destaque termina nos próximos dias.</span></div><div class="lane-actions"><span class="status-pill">4</span><button type="button">Renovar destaque</button></div></div>
-            </div>
-            <p class="fine">Fila de exemplo — mostra o que a consola assinala antes de ser esquecido; não é uma afirmação de resultados.</p>
-          </article>
+      <section class="journey-shell" id="journey" data-flagship-journey data-scenario="realestate" aria-labelledby="journey-title">
+        <div class="journey-toolbar">
+          <div><p class="journey-overline">Área de trabalho de exemplo</p><h2 id="journey-title" tabindex="-1">Pedido de visita · T3 em Cascais</h2></div>
+          <div class="journey-toolbar-actions"><span class="simulation-badge"><span aria-hidden="true">●</span> Apenas simulação</span><button type="button" data-journey-reset>Repor exemplo</button></div>
         </div>
-      </section>
 
-      <section class="screen" data-tab-panel="imoveis" hidden>
-        <div class="screen-grid">
-          <article class="panel span-12 client-search-panel" data-tour-target="pt-portfolio">
-            <div class="panel-title"><h2>Carteira de imóveis</h2><span class="status-pill good">dados de exemplo</span></div>
-            <label class="client-search">
-              <span>Procurar por referência, tipologia ou zona</span>
-              <input type="search" placeholder="Experimente T3, Cascais, Oeiras, reservado ou LC-204" data-listing-search />
-            </label>
-            <p class="muted">5 imóveis ativos. Cada cartão liga aos anúncios nos portais e mostra o estado e o que falta atualizar.</p>
-          </article>
+        <div class="journey-metrics" aria-label="Indicadores de trabalho de exemplo">
+          <article><span>Contactos por responder</span><strong data-metric-value="leads">8</strong><small data-metric-note="leads">Um pronto para analisar</small></article>
+          <article><span>Visitas marcadas</span><strong data-metric-value="visits">3</strong><small data-metric-note="visits">Duas em Cascais</small></article>
+          <article><span>A aguardar aprovação</span><strong data-metric-value="approvals">4</strong><small data-metric-note="approvals">Nada é enviado automaticamente</small></article>
+        </div>
 
-          <article class="panel span-8" data-tour-target="pt-listings">
-            <div class="panel-title"><h2>Imóveis ativos</h2><span class="status-pill" data-listing-count>5 imóveis</span></div>
-            <div class="lane-list" data-listing-list>
-              <div class="lane" data-listing data-listing-keywords="lc-204 t3 cascais disponivel apartamento 420">
-                <div><strong>LC-204 · T3 em Cascais</strong><span>420.000 € · 112 m² · 32 dias no mercado · 1.240 visualizações</span></div>
-                <div class="lane-actions">
-                  <span class="status-pill good">Disponível</span>
-                  <a class="portal-link" href="https://www.idealista.pt/" target="_blank" rel="noopener">Idealista</a>
-                  <a class="portal-link" href="https://www.imovirtual.com/" target="_blank" rel="noopener">Imovirtual</a>
-                  <button type="button" data-demo-action="listing" data-action-done="Atualização concluída ✓">Concluir atualização</button>
-                </div>
-              </div>
-              <div class="lane" data-listing data-listing-keywords="lc-198 t2 oeiras reservado apartamento 295">
-                <div><strong>LC-198 · T2 em Oeiras</strong><span>295.000 € · 78 m² · 11 dias no mercado · 860 visualizações</span></div>
-                <div class="lane-actions">
-                  <span class="status-pill warn">Reservado</span>
-                  <a class="portal-link" href="https://casa.sapo.pt/" target="_blank" rel="noopener">Casa SAPO</a>
-                  <a class="portal-link" href="https://www.idealista.pt/" target="_blank" rel="noopener">Idealista</a>
-                  <button type="button">Atualizar</button>
-                </div>
-              </div>
-              <div class="lane" data-listing data-listing-keywords="lc-187 t1 lisboa disponivel apartamento estrela 240">
-                <div><strong>LC-187 · T1 em Lisboa (Estrela)</strong><span>240.000 € · 54 m² · 47 dias no mercado · 1.910 visualizações</span></div>
-                <div class="lane-actions">
-                  <span class="status-pill good">Disponível</span>
-                  <a class="portal-link" href="https://www.imovirtual.com/" target="_blank" rel="noopener">Imovirtual</a>
-                  <a class="portal-link" href="https://supercasa.pt/" target="_blank" rel="noopener">SUPERCASA</a>
-                  <button type="button">Atualizar</button>
-                </div>
-              </div>
-              <div class="lane" data-listing data-listing-keywords="lc-176 moradia t4 sintra disponivel com proposta 680">
-                <div><strong>LC-176 · Moradia T4 em Sintra</strong><span>680.000 € · 240 m² · 64 dias no mercado · 1.030 visualizações</span></div>
-                <div class="lane-actions">
-                  <span class="status-pill warn">Com proposta</span>
-                  <a class="portal-link" href="https://www.idealista.pt/" target="_blank" rel="noopener">Idealista</a>
-                  <a class="portal-link" href="https://casa.sapo.pt/" target="_blank" rel="noopener">Casa SAPO</a>
-                  <button type="button">Atualizar</button>
-                </div>
-              </div>
-              <div class="lane" data-listing data-listing-keywords="lc-161 t2 cascais disponivel apartamento varanda 365">
-                <div><strong>LC-161 · T2 em Cascais</strong><span>365.000 € · 84 m² · 5 dias no mercado · 410 visualizações</span></div>
-                <div class="lane-actions">
-                  <span class="status-pill good">Disponível</span>
-                  <a class="portal-link" href="https://www.imovirtual.com/" target="_blank" rel="noopener">Imovirtual</a>
-                  <a class="portal-link" href="https://www.idealista.pt/" target="_blank" rel="noopener">Idealista</a>
-                  <button type="button">Atualizar</button>
-                </div>
-              </div>
-              <p class="fine" data-listing-empty hidden>Nenhum imóvel corresponde a essa procura.</p>
-            </div>
-            <p class="fine">Os botões e as ligações são exemplos — remetem para os portais, não para anúncios reais. Dados fictícios.</p>
-          </article>
+        <ol class="journey-pipeline" aria-label="Percurso do pedido de visita">
+          <li data-pipeline-step="0"><span>1</span><strong>Analisar</strong><small>Contacto</small></li>
+          <li data-pipeline-step="1"><span>2</span><strong>Aprovar</strong><small>Resposta</small></li>
+          <li data-pipeline-step="2"><span>3</span><strong>Marcar</strong><small>Visita</small></li>
+          <li data-pipeline-step="3"><span>4</span><strong>Confirmar</strong><small>Cliente</small></li>
+        </ol>
 
-          <article class="panel span-4">
-            <div class="panel-title"><h2>A atualizar</h2><span class="status-pill warn">4 tarefas</span></div>
-            <div class="lane-list">
-              <div class="lane"><div><strong>Rever preço — LC-187</strong><span>47 dias no mercado, poucas visitas. Sugestão de revisão de preço.</span></div><div class="lane-actions"><span class="status-pill warn">rever</span><button type="button">Editar</button></div></div>
-              <div class="lane"><div><strong>Novas fotografias — LC-161</strong><span>Anúncio apenas com 4 fotografias. Acrescentar planta e varanda.</span></div><div class="lane-actions"><span class="status-pill">fotografias</span><button type="button">Carregar</button></div></div>
-              <div class="lane"><div><strong>Destaque a expirar — LC-204</strong><span>O destaque no Idealista termina dentro de 2 dias.</span></div><div class="lane-actions"><span class="status-pill warn">renovar</span><button type="button">Renovar</button></div></div>
-              <div class="lane"><div><strong>Estado — LC-198</strong><span>Reservado: assinalar como tal em todos os portais.</span></div><div class="lane-actions"><span class="status-pill">sincronizar</span><button type="button">Sincronizar</button></div></div>
-            </div>
-          </article>
+        <div class="journey-layout">
+          <section class="journey-focus" aria-labelledby="journey-step-title">
+            <div class="step-heading"><p data-step-label>Passo 1 de 4 · Analisar</p><span data-step-control>Decisão humana</span></div>
+            <h3 id="journey-step-title" data-step-title>Analise o novo pedido de visita.</h3>
+            <p class="step-copy" data-step-copy>O contacto indicou o imóvel, o horário preferido e uma questão. Confirme os dados úteis antes de preparar a resposta.</p>
+            <dl class="enquiry-facts" data-step-facts>
+              <div><dt>Contacto</dt><dd>António Almeida</dd></div><div><dt>Imóvel</dt><dd>LC-204 · T3 Cascais</dd></div><div><dt>Preferência</dt><dd>Quinta-feira depois das 15h</dd></div><div><dt>Origem</dt><dd>Idealista · registo fictício</dd></div>
+            </dl>
+            <div class="next-change"><span aria-hidden="true">→</span><p><strong>O que muda a seguir</strong><span data-step-next>Uma resposta fica preparada para aprovação. Ainda não pode ser enviada.</span></p></div>
+            <button class="journey-primary" type="button" data-journey-action>Preparar resposta</button>
+            <p class="action-reassurance"><span aria-hidden="true">⌁</span> Esta ação altera apenas o painel fictício no seu navegador.</p>
+            <p class="sr-only" data-journey-status role="status" aria-live="polite"></p>
+          </section>
 
-          <aside class="panel span-12 assistant-strip">
-            <div class="panel-title"><h2>Anúncios consistentes em todo o lado</h2><span class="status-pill warn">a sua aprovação</span></div>
-            <p>A consola reúne os imóveis dos vários portais numa só lista, assinala preços, fotografias e destaques desatualizados, e prepara as alterações para o agente confirmar antes de publicar.</p>
+          <aside class="journey-insight" aria-label="Trabalho e atividade">
+            <section class="workload-card" aria-labelledby="workload-title">
+              <div><p class="journey-overline">Vista de trabalho</p><h3 id="workload-title">O que precisa de atenção</h3></div>
+              <div class="workload-graphic">
+                <div class="workload-ring" data-workload-ring role="img" aria-label="Trabalho de exemplo: 3 urgentes, 6 para hoje e 9 controlados"><span><strong data-workload-total>18</strong><small>itens</small></span></div>
+                <ul><li><span class="dot urgent"></span><b data-workload-value="urgent">3</b> urgentes</li><li><span class="dot today"></span><b data-workload-value="today">6</b> hoje</li><li><span class="dot track"></span><b data-workload-value="track">9</b> controlados</li></ul>
+              </div>
+            </section>
+            <section class="activity-card" aria-labelledby="activity-title">
+              <div><p class="journey-overline">Atividade</p><h3 id="activity-title">Um histórico de decisões visível</h3></div>
+              <ol data-activity-list><li><span>09:12</span><p><strong>Pedido de visita recebido</strong><small>Idealista · registo fictício</small></p></li></ol>
+            </section>
           </aside>
         </div>
+
+        <section class="journey-complete" data-journey-complete hidden>
+          <div><p class="journey-overline">Exemplo concluído</p><h3>Um contacto avançou, com todas as decisões visíveis.</h3><p>O contacto, o imóvel, a visita e a confirmação ficaram ligados. Uma consola real seria adaptada aos portais, permissões e processo comercial utilizados pela agência.</p></div>
+          <button class="button-link" type="button" data-explore-toggle aria-expanded="false" aria-controls="full-example">Explorar o painel completo</button>
+        </section>
+
+        <section class="full-example" id="full-example" data-full-example hidden aria-labelledby="full-example-title">
+          <div class="full-example-head"><div><p class="journey-overline">Exploração opcional</p><h3 id="full-example-title" tabindex="-1">O restante dia comercial</h3></div><p>Três vistas reduzidas mostram o que poderia acompanhar o percurso principal.</p></div>
+          <div class="full-example-grid">
+            <article><span class="view-icon" aria-hidden="true">◫</span><h4>Hoje</h4><p>Visitas, contactos sem resposta e próximos prazos numa vista prioritária.</p><ul><li>3 visitas marcadas</li><li>3 contactos atrasados</li><li>2 seguimentos pendentes</li></ul></article>
+            <article><span class="view-icon" aria-hidden="true">⌂</span><h4>Imóveis</h4><p>Estado, preço, fotografias e tarefas dos portais associados a cada imóvel.</p><ul><li>5 imóveis ativos</li><li>4 atualizações necessárias</li><li>Alterações sob aprovação</li></ul></article>
+            <article><span class="view-icon" aria-hidden="true">✉</span><h4>Comunicação</h4><p>Rascunhos preparados com o contacto e imóvel certos.</p><ul><li>4 respostas preparadas</li><li>Anexos assinalados</li><li>Nenhum envio automático</li></ul></article>
+          </div>
+        </section>
       </section>
 
-      <section class="screen" data-tab-panel="email" hidden>
-        <div class="screen-grid">
-          <article class="panel span-5" data-tour-target="pt-emails">
-            <div class="panel-title"><h2>Emails na fila</h2><span class="status-pill warn">aguardam aprovação</span></div>
-            <div class="email-list" role="listbox" aria-label="Modelos de email">
-              <button class="email-item active" type="button" data-email-pick="0" aria-selected="true">
-                <strong>Resposta a pedido de visita</strong>
-                <span>Sr. Almeida · contacto do Idealista · T3 Cascais</span>
-              </button>
-              <button class="email-item" type="button" data-email-pick="1" aria-selected="false">
-                <strong>Envio de detalhes do imóvel</strong>
-                <span>Sra. Pereira · ficha e fotografias · T2 Oeiras</span>
-              </button>
-              <button class="email-item" type="button" data-email-pick="2" aria-selected="false">
-                <strong>Seguimento pós-visita</strong>
-                <span>Sr. e Sra. Martins · visita de ontem · T1 Lisboa</span>
-              </button>
-              <button class="email-item" type="button" data-email-pick="3" aria-selected="false">
-                <strong>Proposta recebida — marcar reunião</strong>
-                <span>Sr. Nunes · proposta na moradia T4 Sintra</span>
-              </button>
-            </div>
-            <p class="fine">Fila de exemplo. Nada é enviado nesta demonstração — os emails aguardam sempre a aprovação do agente.</p>
-          </article>
+      <section class="how-it-works-v2" id="como-funciona" aria-labelledby="how-title">
+        <div><p class="eyebrow">O que esta demonstração mostra</p><h2 id="how-title">Uma camada de controlo sobre o processo comercial.</h2></div>
+        <div class="principle-grid"><article><span>01</span><h3>Reunir contexto útil</h3><p>Juntar dados selecionados dos portais, agenda e comunicação que a agência já utiliza.</p></article><article><span>02</span><h3>Clarificar a próxima ação</h3><p>Organizar contactos e imóveis conforme prioridade, responsável e informação em falta.</p></article><article><span>03</span><h3>Manter a aprovação explícita</h3><p>Preparar tarefas de rotina sem retirar ao agente o controlo das decisões dirigidas ao cliente.</p></article></div>
+      </section>
 
-          <article class="panel span-7 email-compose" data-tour-target="pt-email-preview">
-            <div class="panel-title"><h2>Pré-visualização do email</h2><span class="status-pill warn" data-email-status>rascunho</span></div>
-            <div class="email-meta">
-              <div class="email-field"><span>Para</span><strong data-email-to>antonio.almeida@email.pt</strong></div>
-              <div class="email-field"><span>Assunto</span><strong data-email-subject>Confirmação da visita — T3 em Cascais (ref. LC-204)</strong></div>
-            </div>
-            <div class="email-body" data-email-body>Exmo. Sr. Almeida,
-
-Confirmo a nossa visita de hoje, às 15:00, ao T3 em Cascais (ref. LC-204). A morada é Rua das Flores, 24, e estarei no local cinco minutos antes.
-
-Envio em anexo a ficha do imóvel, com fotografias e plantas. Caso surja algum imprevisto, agradeço que me informe.
-
-Com os melhores cumprimentos,
-Inês Costa — Costa Lima Mediação Imobiliária</div>
-            <div class="email-sent" data-email-sent hidden>✓ Email assinalado como enviado (demonstração — nada foi efetivamente enviado).</div>
-            <div class="action-row">
-              <button type="button" data-email-send>Enviar email</button>
-              <button type="button">Editar antes</button>
-              <button type="button">Anexar ficha do imóvel</button>
-            </div>
-            <p class="fine">A consola preenche o rascunho com os dados corretos do contacto e do imóvel. O agente lê, ajusta e só depois aprova.</p>
-          </article>
-
-          <aside class="panel span-12 assistant-strip">
-            <div class="panel-title"><h2>Como funciona o envio</h2><span class="status-pill warn">a sua aprovação</span></div>
-            <p>Cada email fica associado ao contacto e ao imóvel corretos, com o assunto e o texto já preparados. O agente escolhe o modelo, revê a pré-visualização e aprova — nada sai sem essa confirmação.</p>
-          </aside>
-        </div>
+      <section class="closing-cta closing-cta-v2 conversion-panel" data-conversion-panel hidden>
+        <div><p class="eyebrow">O seu processo, não este modelo</p><h2>O que gere atualmente em ferramentas separadas?</h2><p>Diga-nos o que fica esquecido, repetido ou exige demasiadas verificações. Podemos conversar sobre a utilidade de uma vista de controlo focada.</p></div>
+        <div class="closing-actions"><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Conversar no WhatsApp</a><a class="button-link" href="mailto:hello@roupicogroup.com?subject=Consola%20Imobiliária%20-%20pedido%20de%20informação">Enviar email</a></div>
       </section>
     </main>
 
-    <section class="closing-cta"><div><p class="eyebrow">O que acabou de experimentar</p><h2>Contactos, imóveis e emails preparados num só lugar.</h2><p>As interações são simuladas; nada é publicado ou enviado nesta demonstração.</p></div><div class="closing-actions"><button class="button-link" type="button" data-demo-reset>Repor demo</button><a class="button-link" href="./index.html">Ver todas as demos</a><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Partilhar feedback no WhatsApp</a></div></section>
-    <footer class="footer"><span>Apenas demonstração de conceito · dados e ações simulados, não resultados de clientes.</span><span><a href="https://roupicogroup.com/">Visite roupicogroup.com</a></span></footer>
+    <footer class="footer"><span>Apenas demonstração de conceito · dados fictícios e ações simuladas, não resultados de clientes.</span><span><a href="./index.html#demos">Outros exemplos</a> · <a href="https://roupicogroup.com/">Visite roupicogroup.com</a></span></footer>
   </div>
   <script src="../demo.js" defer></script>
 </body>

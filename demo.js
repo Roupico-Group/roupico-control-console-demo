@@ -4,12 +4,12 @@ const isPortuguese = document.documentElement.lang.startsWith("pt");
 const stateKey = `roupico-console-demo:${page}`;
 
 const feedbackMessages = {
-  overview: "Hi Bernardo, I’ve looked through the Roupiço Business Control Console demos and wanted to share some feedback:",
-  trades: "Hi Bernardo, I’ve looked through the Roupiço Trades Control Console demo and wanted to share some feedback:",
-  salon: "Hi Bernardo, I’ve looked through the Roupiço Salon Control Console demo and wanted to share some feedback:",
-  safety: "Hi Bernardo, I’ve looked through the Roupiço H&S Admin Control Console demo and wanted to share some feedback:",
+  overview: "Hi Bernardo, I’ve tried the Roupiço Business Control Console demo. I currently manage these tasks across separate tools:",
+  trades: "Hi Bernardo, I’ve tried the Roupiço Trades Control Console demo. I currently manage these tasks across separate tools:",
+  salon: "Hi Bernardo, I’ve tried the Roupiço Salon Control Console demo. I currently manage these tasks across separate tools:",
+  safety: "Hi Bernardo, I’ve tried the Roupiço H&S Admin Control Console demo. I currently manage these tasks across separate tools:",
   "pt-overview": "Olá Bernardo, vi as demonstrações da Consola de Gestão da Roupiço e gostaria de partilhar algum feedback:",
-  realestate: "Olá Bernardo, vi a demonstração da Consola Imobiliária da Roupiço e gostaria de partilhar algum feedback:",
+  realestate: "Olá Bernardo, experimentei a Consola Imobiliária da Roupiço. Atualmente, faço a gestão destas tarefas em ferramentas separadas:",
 };
 
 const getState = () => {
@@ -31,14 +31,16 @@ document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
   link.setAttribute("aria-label", `${link.textContent.trim()} (${isPortuguese ? "abre num novo separador" : "opens in a new tab"})`);
 });
 
-const floatingFeedback = document.createElement("a");
-floatingFeedback.className = "floating-feedback whatsapp-link";
-floatingFeedback.href = whatsappUrl;
-floatingFeedback.target = "_blank";
-floatingFeedback.rel = "noopener noreferrer";
-floatingFeedback.textContent = isPortuguese ? "Opinião no WhatsApp" : "Share feedback";
-floatingFeedback.setAttribute("aria-label", `${floatingFeedback.textContent} (${isPortuguese ? "abre num novo separador" : "opens in a new tab"})`);
-document.body.append(floatingFeedback);
+if (!document.body.hasAttribute("data-inline-conversion")) {
+  const floatingFeedback = document.createElement("a");
+  floatingFeedback.className = "floating-feedback whatsapp-link";
+  floatingFeedback.href = whatsappUrl;
+  floatingFeedback.target = "_blank";
+  floatingFeedback.rel = "noopener noreferrer";
+  floatingFeedback.textContent = isPortuguese ? "Opinião no WhatsApp" : "Share feedback";
+  floatingFeedback.setAttribute("aria-label", `${floatingFeedback.textContent} (${isPortuguese ? "abre num novo separador" : "opens in a new tab"})`);
+  document.body.append(floatingFeedback);
+}
 
 // Compact, keyboard-safe demo menu. Desktop keeps the links visible.
 const nav = document.querySelector(".top-links");
@@ -237,9 +239,414 @@ if (emailItems.length) {
   if (send) send.addEventListener("click", () => { if (sent) sent.hidden = false; if (status) { status.textContent = "enviado"; status.className = "status-pill good"; } send.textContent = "Enviado ✓"; send.disabled = true; showToast("Email assinalado como enviado · ação simulada"); });
 }
 
+// Reusable, inline journey model for the new self-guided flagship pattern.
+// Later sector demos can supply another configuration without changing the state logic.
+const journeyConfigs = {
+  trades: {
+    stages: [
+      {
+        label: "Step 1 of 4 · Review",
+        control: "Human decision",
+        title: "Review the new fence-repair enquiry.",
+        copy: "The customer supplied a postcode, photos and preferred week. Review the useful details before preparing anything.",
+        facts: [["Customer", "Jordan M."], ["Request", "Replace two damaged fence panels"], ["Area", "Sheerness · ME12"], ["Evidence", "2 photos attached"]],
+        next: "A sample quote moves into the approval queue. It still cannot be sent.",
+        action: "Prepare sample quote",
+        metrics: { enquiries: [5, "One ready to review"], jobs: [8, "Three on site today"], approvals: [3, "Nothing sends automatically"] },
+        workload: { urgent: 3, today: 5, track: 8 },
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"]],
+      },
+      {
+        label: "Step 2 of 4 · Approve",
+        control: "Approval required",
+        title: "Check the prepared sample quote.",
+        copy: "Details sit beside a fictional scope and price. Review them before the quote moves forward.",
+        facts: [["Customer", "Jordan M."], ["Scope", "Two panels · remove and replace"], ["Sample price", "£480 including materials"], ["Status", "Draft only · not sent"]],
+        next: "Approval marks the quote ready and reveals the booking step.",
+        action: "Approve sample quote",
+        metrics: { enquiries: [4, "Reviewed and organised"], jobs: [8, "Three on site today"], approvals: [4, "Sample quote added"] },
+        workload: { urgent: 3, today: 5, track: 8 },
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Waiting for human approval"]],
+      },
+      {
+        label: "Step 3 of 4 · Book",
+        control: "Schedule decision",
+        title: "Choose the sample site-visit slot.",
+        copy: "The quote is approved inside this demo. Select the suggested visit so the work and customer update stay aligned.",
+        facts: [["Quote", "Approved in this demo"], ["Suggested", "Thursday · 10:30"], ["Alternative", "Friday · 13:00"], ["Visit length", "45 minutes"]],
+        next: "Booking the visit prepares a customer confirmation for review.",
+        action: "Book Thursday at 10:30",
+        metrics: { enquiries: [4, "Reviewed and organised"], jobs: [8, "Visit ready to book"], approvals: [3, "Quote decision recorded"] },
+        workload: { urgent: 2, today: 6, track: 8 },
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Scope and price brought together"], ["08:49", "Sample quote approved", "Decision recorded in the demo"]],
+      },
+      {
+        label: "Step 4 of 4 · Update",
+        control: "Customer-facing review",
+        title: "Review the customer update.",
+        copy: "The visit is on the fictional schedule. Check the prepared confirmation before recording the final approval.",
+        facts: [["Recipient", "Jordan M."], ["Visit", "Thursday · 10:30"], ["Channel", "WhatsApp draft"], ["Send rule", "Approval required"]],
+        next: "Approval records the decision. No real message is sent.",
+        action: "Approve simulated update",
+        metrics: { enquiries: [4, "Reviewed and organised"], jobs: [9, "Sample visit now included"], approvals: [4, "Customer update waiting"] },
+        workload: { urgent: 2, today: 5, track: 9 },
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Scope and price brought together"], ["08:49", "Sample quote approved", "Decision recorded in the demo"], ["08:51", "Sample visit booked", "Thursday at 10:30"]],
+      },
+      {
+        label: "Four-step example complete",
+        control: "All decisions recorded",
+        title: "The enquiry is ready for the next working day.",
+        copy: "The fictional quote, visit and customer update now share one visible decision trail. Nothing left this browser.",
+        facts: [["Enquiry", "Reviewed"], ["Quote", "Approved in the demo"], ["Visit", "Thursday · 10:30"], ["Update", "Approved · not sent"]],
+        next: "Explore the wider example or discuss the workflow you actually use.",
+        action: null,
+        metrics: { enquiries: [4, "Reviewed and organised"], jobs: [9, "Sample visit now included"], approvals: [3, "Update decision recorded"] },
+        workload: { urgent: 1, today: 6, track: 9 },
+        activities: [["08:42", "New enquiry received", "Website request · fictional record"], ["08:47", "Sample quote prepared", "Scope and price brought together"], ["08:49", "Sample quote approved", "Decision recorded in the demo"], ["08:51", "Sample visit booked", "Thursday at 10:30"], ["08:53", "Customer update approved", "Simulated action · nothing sent"]],
+      },
+    ],
+  },
+  salon: {
+    stages: [
+      {
+        label: "Step 1 of 4 · Review",
+        control: "Human decision",
+        title: "Review the new colour enquiry.",
+        copy: "Mia shared her preferred result, availability and colour history. Check the useful details before preparing a reply.",
+        facts: [["Client", "Mia R."], ["Request", "Balayage consultation"], ["Preference", "Low-maintenance brunette"], ["Availability", "Thursday evening"]],
+        next: "A consultation reply moves into the approval queue. It still cannot be sent.",
+        action: "Prepare consultation reply",
+        metrics: { enquiries: [7, "One ready to review"], bookings: [12, "Two useful gaps remain"], approvals: [3, "Nothing sends automatically"] },
+        workload: { urgent: 3, today: 6, track: 9 },
+        activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"]],
+      },
+      {
+        label: "Step 2 of 4 · Approve",
+        control: "Approval required",
+        title: "Check the prepared consultation reply.",
+        copy: "The draft explains the consultation and patch-test requirement. Review the wording before the enquiry moves forward.",
+        facts: [["Client", "Mia R."], ["Suggested slot", "Thursday · 18:00"], ["Preparation", "Consultation and patch test"], ["Status", "Draft only · not sent"]],
+        next: "Approval makes the consultation slot available to book inside this demo.",
+        action: "Approve sample reply",
+        metrics: { enquiries: [6, "Reviewed and organised"], bookings: [12, "Two useful gaps remain"], approvals: [4, "Consultation reply added"] },
+        workload: { urgent: 3, today: 6, track: 9 },
+        activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Consultation reply prepared", "Waiting for human approval"]],
+      },
+      {
+        label: "Step 3 of 4 · Book",
+        control: "Schedule decision",
+        title: "Book the sample consultation.",
+        copy: "The reply is approved inside this demo. Select the suggested slot so the client context and appointment stay aligned.",
+        facts: [["Reply", "Approved in this demo"], ["Suggested", "Thursday · 18:00"], ["Service", "Colour consultation"], ["Duration", "30 minutes"]],
+        next: "Booking the consultation prepares an appointment confirmation for review.",
+        action: "Book Thursday at 18:00",
+        metrics: { enquiries: [6, "Reviewed and organised"], bookings: [12, "Consultation ready to book"], approvals: [3, "Reply decision recorded"] },
+        workload: { urgent: 2, today: 7, track: 9 },
+        activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Consultation reply prepared", "Client context brought together"], ["09:12", "Sample reply approved", "Decision recorded in the demo"]],
+      },
+      {
+        label: "Step 4 of 4 · Update",
+        control: "Client-facing review",
+        title: "Review the appointment confirmation.",
+        copy: "The consultation is on the fictional schedule. Check the prepared confirmation before recording the final approval.",
+        facts: [["Client", "Mia R."], ["Appointment", "Thursday · 18:00"], ["Reminder", "Patch-test timing included"], ["Send rule", "Approval required"]],
+        next: "Approval records the decision. No real message is sent.",
+        action: "Approve simulated confirmation",
+        metrics: { enquiries: [6, "Reviewed and organised"], bookings: [13, "Sample consultation included"], approvals: [4, "Confirmation waiting"] },
+        workload: { urgent: 2, today: 6, track: 10 },
+        activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Consultation reply prepared", "Client context brought together"], ["09:12", "Sample reply approved", "Decision recorded in the demo"], ["09:14", "Consultation booked", "Thursday at 18:00"]],
+      },
+      {
+        label: "Four-step example complete",
+        control: "All decisions recorded",
+        title: "The client enquiry is ready for the next working day.",
+        copy: "The fictional reply, consultation and confirmation now share one visible decision trail. Nothing left this browser.",
+        facts: [["Enquiry", "Reviewed"], ["Reply", "Approved in the demo"], ["Consultation", "Thursday · 18:00"], ["Confirmation", "Approved · not sent"]],
+        next: "Explore the wider example or discuss the workflow your salon actually uses.",
+        action: null,
+        metrics: { enquiries: [6, "Reviewed and organised"], bookings: [13, "Sample consultation included"], approvals: [3, "Confirmation decision recorded"] },
+        workload: { urgent: 1, today: 7, track: 10 },
+        activities: [["09:06", "Colour enquiry received", "Instagram message · fictional record"], ["09:10", "Consultation reply prepared", "Client context brought together"], ["09:12", "Sample reply approved", "Decision recorded in the demo"], ["09:14", "Consultation booked", "Thursday at 18:00"], ["09:16", "Confirmation approved", "Simulated action · nothing sent"]],
+      },
+    ],
+  },
+  safety: {
+    stages: [
+      {
+        label: "Step 1 of 4 · Review",
+        control: "Admin decision",
+        title: "Review the new inspection enquiry.",
+        copy: "The client supplied a site type, preferred week and contact. Check the admin details without making any technical assessment.",
+        facts: [["Client", "North Quay Storage"], ["Request", "Warehouse inspection"], ["Site", "Single-storey unit"], ["Boundary", "Admin triage only"]],
+        next: "A request for missing scope details is prepared. It still cannot be sent.",
+        action: "Prepare scope questions",
+        metrics: { enquiries: [6, "Two need clarification"], visits: [4, "Access notes checked"], reviews: [5, "Qualified decision required"] },
+        workload: { urgent: 4, today: 6, track: 10 },
+        activities: [["08:18", "Inspection enquiry logged", "Email request · fictional record"]],
+      },
+      {
+        label: "Step 2 of 4 · Clarify",
+        control: "Approval required",
+        title: "Check the prepared scope questions.",
+        copy: "The draft asks only for activity, access and timing details. It gives no safety advice and still needs approval.",
+        facts: [["Missing", "Work activity summary"], ["Access", "Visitor induction details"], ["Timing", "Preferred inspection week"], ["Boundary", "No technical advice"]],
+        next: "Approval records the clarification and reveals a provisional visit slot.",
+        action: "Approve scope request",
+        metrics: { enquiries: [5, "One clarification organised"], visits: [4, "Access notes checked"], reviews: [6, "Scope request added"] },
+        workload: { urgent: 4, today: 6, track: 10 },
+        activities: [["08:18", "Inspection enquiry logged", "Email request · fictional record"], ["08:24", "Scope questions prepared", "Waiting for admin approval"]],
+      },
+      {
+        label: "Step 3 of 4 · Book",
+        control: "Schedule decision",
+        title: "Book the provisional inspection.",
+        copy: "The fictional client details are complete. Select the suggested slot while keeping technical assessment with the assigned advisor.",
+        facts: [["Scope", "Admin details complete"], ["Suggested", "Tuesday · 10:30"], ["Advisor", "Competent person assigned"], ["Access", "Induction at reception"]],
+        next: "Booking the visit creates an administrative review pack for the advisor.",
+        action: "Book Tuesday at 10:30",
+        metrics: { enquiries: [5, "Clarification organised"], visits: [4, "Inspection ready to book"], reviews: [5, "Admin decision recorded"] },
+        workload: { urgent: 3, today: 7, track: 10 },
+        activities: [["08:18", "Inspection enquiry logged", "Email request · fictional record"], ["08:24", "Scope questions prepared", "Administrative details only"], ["08:27", "Scope request approved", "Decision recorded in the demo"]],
+      },
+      {
+        label: "Step 4 of 4 · Route",
+        control: "Professional boundary",
+        title: "Route the pack for competent-person review.",
+        copy: "The visit is on the fictional schedule. Confirm ownership without approving advice, findings or regulated documents.",
+        facts: [["Visit", "Tuesday · 10:30"], ["Pack", "Scope, access and contact details"], ["Reviewer", "Assigned competent person"], ["Boundary", "Professional judgement required"]],
+        next: "Routing records ownership. It does not create or approve safety advice.",
+        action: "Route for professional review",
+        metrics: { enquiries: [5, "Clarification organised"], visits: [5, "Sample inspection included"], reviews: [6, "Review pack waiting"] },
+        workload: { urgent: 3, today: 6, track: 11 },
+        activities: [["08:18", "Inspection enquiry logged", "Email request · fictional record"], ["08:24", "Scope questions prepared", "Administrative details only"], ["08:27", "Scope request approved", "Decision recorded in the demo"], ["08:31", "Inspection booked", "Tuesday at 10:30"]],
+      },
+      {
+        label: "Four-step example complete",
+        control: "Professional review required",
+        title: "The enquiry is ready for qualified review.",
+        copy: "The fictional scope, visit and ownership trail are visible. No technical judgement or regulated document was produced.",
+        facts: [["Enquiry", "Admin-reviewed"], ["Scope", "Clarified in the demo"], ["Visit", "Tuesday · 10:30"], ["Review", "Assigned · not completed"]],
+        next: "Explore the wider example or discuss the administrative workflow you actually use.",
+        action: null,
+        metrics: { enquiries: [5, "Clarification organised"], visits: [5, "Sample inspection included"], reviews: [6, "Qualified review still required"] },
+        workload: { urgent: 2, today: 7, track: 11 },
+        activities: [["08:18", "Inspection enquiry logged", "Email request · fictional record"], ["08:24", "Scope questions prepared", "Administrative details only"], ["08:27", "Scope request approved", "Decision recorded in the demo"], ["08:31", "Inspection booked", "Tuesday at 10:30"], ["08:34", "Review pack assigned", "Competent-person decision still required"]],
+      },
+    ],
+  },
+  realestate: {
+    ui: {
+      workload: ({ urgent, today, track }) => `Trabalho de exemplo: ${urgent} urgentes, ${today} para hoje e ${track} controlados`,
+      completeAnnouncement: "Exemplo concluído. As quatro decisões simuladas ficaram registadas.",
+      completeToast: "Exemplo concluído · nada foi enviado",
+      stepToast: (step) => `Passo ${step} concluído · ação simulada`,
+      explore: "Explorar o painel completo",
+      hideExplore: "Ocultar o painel completo",
+    },
+    stages: [
+      {
+        label: "Passo 1 de 4 · Analisar",
+        control: "Decisão humana",
+        title: "Analise o novo pedido de visita.",
+        copy: "O contacto indicou o imóvel, o horário preferido e uma questão. Confirme os dados úteis antes de preparar a resposta.",
+        facts: [["Contacto", "António Almeida"], ["Imóvel", "LC-204 · T3 Cascais"], ["Preferência", "Quinta-feira depois das 15h"], ["Origem", "Idealista · registo fictício"]],
+        next: "Uma resposta fica preparada para aprovação. Ainda não pode ser enviada.",
+        action: "Preparar resposta",
+        metrics: { leads: [8, "Um pronto para analisar"], visits: [3, "Duas em Cascais"], approvals: [4, "Nada é enviado automaticamente"] },
+        workload: { urgent: 3, today: 6, track: 9 },
+        activities: [["09:12", "Pedido de visita recebido", "Idealista · registo fictício"]],
+      },
+      {
+        label: "Passo 2 de 4 · Aprovar",
+        control: "Aprovação necessária",
+        title: "Reveja a resposta preparada.",
+        copy: "O rascunho confirma o imóvel e propõe dois horários. Reveja o texto antes de o contacto avançar.",
+        facts: [["Contacto", "António Almeida"], ["Imóvel", "LC-204 · T3 Cascais"], ["Opções", "Quinta 15h ou 16h30"], ["Estado", "Rascunho · não enviado"]],
+        next: "A aprovação disponibiliza o horário sugerido para marcação nesta demonstração.",
+        action: "Aprovar resposta de exemplo",
+        metrics: { leads: [7, "Contacto analisado"], visits: [3, "Duas em Cascais"], approvals: [5, "Resposta adicionada"] },
+        workload: { urgent: 3, today: 6, track: 9 },
+        activities: [["09:12", "Pedido de visita recebido", "Idealista · registo fictício"], ["09:16", "Resposta preparada", "A aguardar aprovação humana"]],
+      },
+      {
+        label: "Passo 3 de 4 · Marcar",
+        control: "Decisão de agenda",
+        title: "Marque a visita de exemplo.",
+        copy: "A resposta foi aprovada nesta demonstração. Escolha o horário sugerido para manter o contacto e o imóvel ligados.",
+        facts: [["Resposta", "Aprovada nesta demonstração"], ["Sugerido", "Quinta-feira · 15:00"], ["Imóvel", "LC-204 · T3 Cascais"], ["Duração", "45 minutos"]],
+        next: "A marcação prepara uma confirmação para revisão do agente.",
+        action: "Marcar quinta-feira às 15:00",
+        metrics: { leads: [7, "Contacto analisado"], visits: [3, "Visita pronta para marcar"], approvals: [4, "Decisão registada"] },
+        workload: { urgent: 2, today: 7, track: 9 },
+        activities: [["09:12", "Pedido de visita recebido", "Idealista · registo fictício"], ["09:16", "Resposta preparada", "Contacto e imóvel reunidos"], ["09:18", "Resposta aprovada", "Decisão registada na demonstração"]],
+      },
+      {
+        label: "Passo 4 de 4 · Confirmar",
+        control: "Revisão dirigida ao cliente",
+        title: "Reveja a confirmação da visita.",
+        copy: "A visita está na agenda fictícia. Confirme o destinatário, imóvel e horário antes de registar a aprovação final.",
+        facts: [["Destinatário", "António Almeida"], ["Visita", "Quinta-feira · 15:00"], ["Imóvel", "LC-204 · T3 Cascais"], ["Regra", "Aprovação necessária"]],
+        next: "A aprovação regista a decisão. Nenhuma mensagem real é enviada.",
+        action: "Aprovar confirmação simulada",
+        metrics: { leads: [7, "Contacto analisado"], visits: [4, "Visita de exemplo incluída"], approvals: [5, "Confirmação a aguardar"] },
+        workload: { urgent: 2, today: 6, track: 10 },
+        activities: [["09:12", "Pedido de visita recebido", "Idealista · registo fictício"], ["09:16", "Resposta preparada", "Contacto e imóvel reunidos"], ["09:18", "Resposta aprovada", "Decisão registada na demonstração"], ["09:20", "Visita marcada", "Quinta-feira às 15:00"]],
+      },
+      {
+        label: "Exemplo de quatro passos concluído",
+        control: "Todas as decisões registadas",
+        title: "O pedido de visita está pronto para o próximo dia de trabalho.",
+        copy: "A resposta, visita e confirmação fictícias partilham agora um histórico visível. Nada saiu deste navegador.",
+        facts: [["Contacto", "Analisado"], ["Resposta", "Aprovada na demonstração"], ["Visita", "Quinta-feira · 15:00"], ["Confirmação", "Aprovada · não enviada"]],
+        next: "Explore o exemplo completo ou fale connosco sobre o processo que realmente utiliza.",
+        action: null,
+        metrics: { leads: [7, "Contacto analisado"], visits: [4, "Visita de exemplo incluída"], approvals: [4, "Decisão final registada"] },
+        workload: { urgent: 1, today: 7, track: 10 },
+        activities: [["09:12", "Pedido de visita recebido", "Idealista · registo fictício"], ["09:16", "Resposta preparada", "Contacto e imóvel reunidos"], ["09:18", "Resposta aprovada", "Decisão registada na demonstração"], ["09:20", "Visita marcada", "Quinta-feira às 15:00"], ["09:22", "Confirmação aprovada", "Ação simulada · nada enviado"]],
+      },
+    ],
+  },
+};
+
+const journeyRoot = document.querySelector("[data-flagship-journey]");
+if (journeyRoot) {
+  const config = journeyConfigs[journeyRoot.dataset.scenario];
+  const journeyUi = {
+    workload: ({ urgent, today, track }) => `Example workload: ${urgent} urgent, ${today} due today and ${track} on track`,
+    completeAnnouncement: "Example complete. All four simulated decisions are recorded.",
+    completeToast: "Example complete · nothing was sent",
+    stepToast: (step) => `Step ${step} completed · simulated action`,
+    explore: "Explore the wider dashboard",
+    hideExplore: "Hide the wider dashboard",
+    ...config.ui,
+  };
+  const stepLabel = journeyRoot.querySelector("[data-step-label]");
+  const stepControl = journeyRoot.querySelector("[data-step-control]");
+  const stepTitle = journeyRoot.querySelector("[data-step-title]");
+  const stepCopy = journeyRoot.querySelector("[data-step-copy]");
+  const stepFacts = journeyRoot.querySelector("[data-step-facts]");
+  const stepNext = journeyRoot.querySelector("[data-step-next]");
+  const actionButton = journeyRoot.querySelector("[data-journey-action]");
+  const resetButton = journeyRoot.querySelector("[data-journey-reset]");
+  const statusMessage = journeyRoot.querySelector("[data-journey-status]");
+  const activityList = journeyRoot.querySelector("[data-activity-list]");
+  const ring = journeyRoot.querySelector("[data-workload-ring]");
+  const completePanel = journeyRoot.querySelector("[data-journey-complete]");
+  const conversionPanel = document.querySelector("[data-conversion-panel]");
+  const exploreButton = journeyRoot.querySelector("[data-explore-toggle]");
+  const fullExample = journeyRoot.querySelector("[data-full-example]");
+  const storedStep = Number(getState().journeyStep);
+  let journeyStep = Number.isInteger(storedStep) ? Math.max(0, Math.min(storedStep, config.stages.length - 1)) : 0;
+
+  const renderPairs = (container, pairs, termTag, detailTag) => {
+    container.textContent = "";
+    pairs.forEach(([term, detail]) => {
+      const wrapper = document.createElement("div");
+      const termNode = document.createElement(termTag);
+      const detailNode = document.createElement(detailTag);
+      termNode.textContent = term;
+      detailNode.textContent = detail;
+      wrapper.append(termNode, detailNode);
+      container.append(wrapper);
+    });
+  };
+
+  const renderJourney = (announce = false) => {
+    const state = config.stages[journeyStep];
+    stepLabel.textContent = state.label;
+    stepControl.textContent = state.control;
+    stepTitle.textContent = state.title;
+    stepCopy.textContent = state.copy;
+    stepNext.textContent = state.next;
+    renderPairs(stepFacts, state.facts, "dt", "dd");
+
+    Object.entries(state.metrics).forEach(([key, [value, note]]) => {
+      journeyRoot.querySelector(`[data-metric-value="${key}"]`).textContent = value;
+      journeyRoot.querySelector(`[data-metric-note="${key}"]`).textContent = note;
+    });
+
+    journeyRoot.querySelectorAll("[data-pipeline-step]").forEach((item) => {
+      const index = Number(item.dataset.pipelineStep);
+      item.classList.toggle("complete", journeyStep > index);
+      item.classList.toggle("active", journeyStep === index);
+      if (journeyStep === index) item.setAttribute("aria-current", "step");
+      else item.removeAttribute("aria-current");
+    });
+
+    const total = state.workload.urgent + state.workload.today + state.workload.track;
+    const urgentEnd = state.workload.urgent / total * 360;
+    const todayEnd = urgentEnd + state.workload.today / total * 360;
+    ring.style.setProperty("--urgent-end", `${urgentEnd}deg`);
+    ring.style.setProperty("--today-end", `${todayEnd}deg`);
+    ring.setAttribute("aria-label", journeyUi.workload(state.workload));
+    journeyRoot.querySelector("[data-workload-total]").textContent = total;
+    Object.entries(state.workload).forEach(([key, value]) => { journeyRoot.querySelector(`[data-workload-value="${key}"]`).textContent = value; });
+
+    activityList.textContent = "";
+    state.activities.slice().reverse().forEach(([time, title, detail]) => {
+      const item = document.createElement("li");
+      const timeNode = document.createElement("span");
+      const copyNode = document.createElement("p");
+      const titleNode = document.createElement("strong");
+      const detailNode = document.createElement("small");
+      timeNode.textContent = time;
+      titleNode.textContent = title;
+      detailNode.textContent = detail;
+      copyNode.append(titleNode, detailNode);
+      item.append(timeNode, copyNode);
+      activityList.append(item);
+    });
+
+    const finished = journeyStep === config.stages.length - 1;
+    actionButton.hidden = finished;
+    actionButton.textContent = state.action || "";
+    completePanel.hidden = !finished;
+    conversionPanel.hidden = journeyStep === 0;
+    if (announce) statusMessage.textContent = finished ? journeyUi.completeAnnouncement : `${state.label}. ${state.title}`;
+  };
+
+  actionButton.addEventListener("click", () => {
+    if (journeyStep >= config.stages.length - 1) return;
+    journeyStep += 1;
+    const current = getState();
+    current.journeyStep = journeyStep;
+    saveState(current);
+    renderJourney(true);
+    showToast(journeyStep === config.stages.length - 1 ? journeyUi.completeToast : journeyUi.stepToast(journeyStep));
+  });
+
+  resetButton.addEventListener("click", () => {
+    journeyStep = 0;
+    try { sessionStorage.removeItem(stateKey); } catch { /* no-op */ }
+    fullExample.hidden = true;
+    exploreButton.setAttribute("aria-expanded", "false");
+    exploreButton.textContent = journeyUi.explore;
+    renderJourney(true);
+    actionButton.focus();
+  });
+
+  exploreButton.addEventListener("click", () => {
+    const willOpen = fullExample.hidden;
+    fullExample.hidden = !willOpen;
+    exploreButton.setAttribute("aria-expanded", String(willOpen));
+    exploreButton.textContent = willOpen ? journeyUi.hideExplore : journeyUi.explore;
+    if (willOpen) journeyRoot.querySelector("#full-example-title").focus({ preventScroll: true });
+  });
+
+  renderJourney();
+
+  if (new URLSearchParams(window.location.search).get("tour") === "1") {
+    requestAnimationFrame(() => {
+      journeyRoot.querySelector(".journey-focus").scrollIntoView({ behavior: "auto", block: "start" });
+      if (actionButton.hidden) journeyRoot.querySelector("#journey-title").focus({ preventScroll: true });
+      else actionButton.focus({ preventScroll: true });
+    });
+  }
+}
+
 // Clearly identify controls that are visual examples rather than working actions.
 document.querySelectorAll("button").forEach((button) => {
-  if (button.matches("[data-tab-target], [data-demo-action], [data-demo-reset], [data-tour-start], [data-email-pick], [data-email-send], .nav-toggle")) return;
+  if (button.matches("[data-tab-target], [data-demo-action], [data-demo-reset], [data-tour-start], [data-email-pick], [data-email-send], [data-journey-action], [data-journey-reset], [data-explore-toggle], .nav-toggle")) return;
   button.disabled = true;
   button.classList.add("preview-only");
   button.title = isPortuguese ? "Apenas pré-visualização nesta demonstração" : "Preview only in this concept demo";

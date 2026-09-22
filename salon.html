@@ -4,236 +4,124 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
-  <meta name="description" content="An interactive Roupiço Group concept dashboard for salon bookings, client follow-up, reviews and content approvals." />
-  <meta property="og:title" content="Salon Control Console — interactive concept demo" /><meta property="og:description" content="Explore a controlled workflow for client replies, rebooking and review requests." /><meta property="og:type" content="website" /><meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/salon.html" /><meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
-  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Salon Control Console — concept demo" /><meta name="twitter:description" content="A controlled workflow for bookings and client follow-up." /><meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="description" content="A self-guided fictional workflow showing how a salon control console could organise an enquiry, consultation, booking and client update." />
+  <meta property="og:title" content="Glow Studio Control Console | Concept Demo" />
+  <meta property="og:description" content="Try a four-step fictional salon workflow with client context and human-approved actions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://roupico-group.github.io/roupico-control-console-demo/salon.html" />
+  <meta property="og:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Glow Studio Control Console | Concept Demo" />
+  <meta name="twitter:description" content="A self-guided fictional workflow for a salon or beauty business." />
+  <meta name="twitter:image" content="https://roupico-group.github.io/roupico-control-console-demo/social-preview.png" />
   <title>Glow Studio Control Console | Concept Demo</title>
   <link rel="icon" href="./logo-header.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="theme-salon" data-demo-page="salon" data-demo-label="Salon Control Console">
-  <div class="shell" data-demo-tabs>
-    <header class="topbar">
-      <a class="brand" href="./index.html">
+<body class="theme-salon flagship-demo" data-demo-page="salon" data-demo-label="Glow Studio Control Console" data-inline-conversion>
+  <div class="shell">
+    <header class="topbar phase-one-topbar">
+      <a class="brand" href="./index.html" aria-label="Business Control Console overview">
         <img class="brand-logo" src="./logo-header.png" alt="" width="682" height="723" />
         <span><strong>Roupiço Group</strong> Concept demo</span>
       </a>
       <nav class="top-links" aria-label="Demo navigation">
         <a href="./index.html">Overview</a>
-        <a href="./trades.html">Trades demo</a>
-        <a href="./safety.html">H&amp;S admin demo</a>
+        <a class="nav-primary" aria-current="page" href="./salon.html?tour=1">Try the demo</a>
+        <a href="./index.html#examples">Other examples</a>
+        <a class="lang-link" href="./pt/index.html" lang="pt-PT" hreflang="pt-PT">Português</a>
       </nav>
     </header>
 
-    <main class="dashboard-shell">
-      <section class="business-head">
-        <div class="icon-tile" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19c4-7 12-7 16 0"/><path d="M8 13a4 4 0 1 1 8 0"/><path d="M5 5c3 3 11 3 14 0"/></svg>
-        </div>
+    <main>
+      <section class="flagship-intro" aria-labelledby="salon-title">
         <div>
+          <p class="concept-status"><span aria-hidden="true">●</span> Concept demo · fictional data · simulated actions</p>
           <p class="eyebrow">Salon / beauty business</p>
-          <h1>Glow Studio Control Console</h1>
-          <p>Example dashboard for bookings, client follow-up, reviews and content ideas.</p>
+          <h1 id="salon-title">Glow Studio <em>Control Console</em></h1>
+          <p>Move one colour enquiry from first review to an approved appointment confirmation. Four short actions show the workflow; nothing is sent.</p>
         </div>
-        <span class="status-pill good">Concept demo</span>
+        <a class="button-link" href="#how-it-works">How this example works</a>
       </section>
 
-      <section class="help-strip" aria-label="What this demo helps with">
-        <div class="help-item"><strong>Reply faster</strong><span>Reply to Instagram, WhatsApp and email enquiries without opening every inbox.</span></div>
-        <div class="help-item"><strong>Book from here</strong><span>Create reservations, fill gaps and update client records from one place.</span></div>
-        <div class="help-item"><strong>Keep control</strong><span>Drafts, bookings and posts wait for your check before anything goes out.</span></div>
-      </section>
-
-      <div class="tabs" role="tablist" aria-label="Salon demo screens">
-        <button class="active" type="button" data-tab-target="today" aria-selected="true">Today</button>
-        <button type="button" data-tab-target="clients" aria-selected="false">Client Notes</button>
-        <button type="button" data-tab-target="flow" aria-selected="false">Customer Flow</button>
-        <button type="button" data-tab-target="content" aria-selected="false">Reviews & Social</button>
-      </div>
-
-      <section class="screen active" data-tab-panel="today">
-        <div class="screen-grid">
-          <article class="panel span-4">
-            <div class="metric"><span>Bookings today</span><strong>12</strong><small>3 colour, 5 cuts, 4 beauty</small></div>
-          </article>
-          <article class="panel span-4">
-            <div class="metric"><span>Open gaps</span><strong>2</strong><small>Best for express treatments</small></div>
-          </article>
-          <article class="panel span-4">
-            <div class="metric"><span>Unread enquiries</span><strong>7</strong><small>Instagram, WhatsApp, web form</small></div>
-          </article>
-
-          <article class="panel span-7">
-            <div class="panel-title"><h2>Appointment rhythm</h2><span class="status-pill good">main chair · snapshot</span></div>
-            <div class="calendar-strip">
-              <span><strong>09:00</strong><small>Cut & finish</small></span>
-              <span class="active"><strong>10:30</strong><small>Colour patch check</small></span>
-              <span><strong>12:00</strong><small>Open gap</small></span>
-              <span><strong>13:15</strong><small>Lashes</small></span>
-              <span><strong>15:00</strong><small>Balayage</small></span>
-              <span><strong>16:45</strong><small>Open gap</small></span>
-            </div>
-          </article>
-
-          <article class="panel span-5">
-            <div class="panel-title"><h2>Where messages came from</h2></div>
-            <div class="chart-bars">
-              <div style="min-height:80px" data-label="IG"></div>
-              <div style="min-height:138px" data-label="Phone"></div>
-              <div style="min-height:106px" data-label="WhatsApp"></div>
-              <div style="min-height:52px" data-label="Web"></div>
-              <div style="min-height:96px" data-label="Walk-in"></div>
-            </div>
-          </article>
-
-          <article class="panel span-7">
-            <div class="panel-title"><h2>Needs attention</h2></div>
-            <div class="lane-list">
-              <div class="lane"><div><strong>New colour enquiry</strong><span>Asked for price range and earliest consultation.</span></div><div class="lane-actions"><span class="status-pill warn">reply draft</span><button type="button">Reply</button><button type="button">Offer consult</button></div></div>
-              <div class="lane"><div><strong>Review request</strong><span>Three happy appointments from yesterday are ready for a polite review request.</span></div><div class="lane-actions"><span class="status-pill good" data-action-status="review">ready</span><button type="button" data-demo-action="review" data-action-done="Request simulated ✓">Send request</button></div></div>
-              <div class="lane"><div><strong>Social reminder</strong><span>Post the “how to prep for colour” FAQ while the topic is fresh.</span></div><div class="lane-actions"><span class="status-pill">idea</span><button type="button">Open draft</button></div></div>
-            </div>
-          </article>
-
-          <article class="panel span-12">
-            <div class="panel-title"><h2>Follow-ups not forgotten</h2><span class="status-pill warn">catches what gets missed</span></div>
-            <div class="lane-list">
-              <div class="lane"><div><strong>Enquiries waiting over 24h</strong><span>Instagram and WhatsApp messages with no reply yet.</span></div><div class="lane-actions"><span class="status-pill warn">3 to chase</span><button type="button">Reply now</button></div></div>
-              <div class="lane"><div><strong>Consults with no follow-up</strong><span>Colour enquiries that never got a second reply.</span></div><div class="lane-actions"><span class="status-pill warn">2</span><button type="button">Chase consults</button></div></div>
-              <div class="lane"><div><strong>Reviews not yet requested</strong><span>Happy clients from the last few days, request not sent.</span></div><div class="lane-actions"><span class="status-pill">4</span><button type="button">Send requests</button></div></div>
-            </div>
-            <p class="fine">Example queue — shows what the console flags before it gets forgotten, not a results claim.</p>
-          </article>
+      <section class="journey-shell" id="journey" data-flagship-journey data-scenario="salon" aria-labelledby="journey-title">
+        <div class="journey-toolbar">
+          <div><p class="journey-overline">Example workspace</p><h2 id="journey-title" tabindex="-1">Colour consultation enquiry</h2></div>
+          <div class="journey-toolbar-actions"><span class="simulation-badge"><span aria-hidden="true">●</span> Simulation only</span><button type="button" data-journey-reset>Reset example</button></div>
         </div>
-      </section>
 
-      <section class="screen" data-tab-panel="clients" hidden>
-        <div class="screen-grid">
-          <article class="panel span-12 client-search-panel">
-            <div class="panel-title"><h2>Find a customer</h2><span class="status-pill good">sample records</span></div>
-            <label class="client-search">
-              <span>Search by name, service or note</span>
-              <input type="search" value="Mia R." placeholder="Try Mia, Aisha, Laura, bridal or patch test" data-client-search />
-            </label>
-            <div class="client-profile" aria-live="polite">
-              <div>
-                <p class="eyebrow">Customer record</p>
-                <h3 data-client-name>Mia R.</h3>
-                <p data-client-type>Colour client</p>
+        <div class="journey-metrics" aria-label="Example workload figures">
+          <article><span>Open enquiries</span><strong data-metric-value="enquiries">7</strong><small data-metric-note="enquiries">One ready to review</small></article>
+          <article><span>Today’s bookings</span><strong data-metric-value="bookings">12</strong><small data-metric-note="bookings">Two useful gaps remain</small></article>
+          <article><span>Awaiting approval</span><strong data-metric-value="approvals">3</strong><small data-metric-note="approvals">Nothing sends automatically</small></article>
+        </div>
+
+        <ol class="journey-pipeline" aria-label="Client enquiry workflow">
+          <li data-pipeline-step="0"><span>1</span><strong>Review</strong><small>Enquiry</small></li>
+          <li data-pipeline-step="1"><span>2</span><strong>Approve</strong><small>Reply</small></li>
+          <li data-pipeline-step="2"><span>3</span><strong>Book</strong><small>Consult</small></li>
+          <li data-pipeline-step="3"><span>4</span><strong>Update</strong><small>Client</small></li>
+        </ol>
+
+        <div class="journey-layout">
+          <section class="journey-focus" aria-labelledby="journey-step-title">
+            <div class="step-heading"><p data-step-label>Step 1 of 4 · Review</p><span data-step-control>Human decision</span></div>
+            <h3 id="journey-step-title" data-step-title>Review the new colour enquiry.</h3>
+            <p class="step-copy" data-step-copy>Mia shared her preferred result, availability and colour history. Check the useful details before preparing a reply.</p>
+            <dl class="enquiry-facts" data-step-facts>
+              <div><dt>Client</dt><dd>Mia R.</dd></div><div><dt>Request</dt><dd>Balayage consultation</dd></div><div><dt>Preference</dt><dd>Low-maintenance brunette</dd></div><div><dt>Availability</dt><dd>Thursday evening</dd></div>
+            </dl>
+            <div class="next-change"><span aria-hidden="true">→</span><p><strong>What changes next</strong><span data-step-next>A consultation reply moves into the approval queue. It still cannot be sent.</span></p></div>
+            <button class="journey-primary" type="button" data-journey-action>Prepare consultation reply</button>
+            <p class="action-reassurance"><span aria-hidden="true">⌁</span> This only changes the fictional dashboard in your browser.</p>
+            <p class="sr-only" data-journey-status role="status" aria-live="polite"></p>
+          </section>
+
+          <aside class="journey-insight" aria-label="Workload and activity">
+            <section class="workload-card" aria-labelledby="workload-title">
+              <div><p class="journey-overline">Workload view</p><h3 id="workload-title">What needs attention</h3></div>
+              <div class="workload-graphic">
+                <div class="workload-ring" data-workload-ring role="img" aria-label="Example workload: 3 urgent, 6 due today and 9 on track"><span><strong data-workload-total>18</strong><small>items</small></span></div>
+                <ul><li><span class="dot urgent"></span><b data-workload-value="urgent">3</b> urgent</li><li><span class="dot today"></span><b data-workload-value="today">6</b> today</li><li><span class="dot track"></span><b data-workload-value="track">9</b> on track</li></ul>
               </div>
-              <div class="profile-actions">
-                <button type="button" data-client-primary>Reply</button>
-                <button type="button">Add note</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="panel span-4">
-            <div class="panel-title"><h2>Repeat client reminders</h2></div>
-            <div class="donut" style="--value:64%" data-label="64%"></div>
-            <p class="muted">Example: clients due a rebook reminder within the next 10 days.</p>
-            <div class="money-row"><span>Rebook value at risk</span><strong class="cash">£1,840</strong></div>
-            <div class="action-row"><button type="button">Message due clients</button></div>
-            <p class="fine">Example: overdue clients × average ticket. Illustrative figure, not a results claim.</p>
-          </article>
-
-          <article class="panel span-8">
-            <div class="panel-title"><h2>Selected customer notes</h2><span class="status-pill warn" data-client-status>reply due</span></div>
-            <div class="note-grid">
-              <div><strong>Service notes</strong><span data-client-notes>Warm brunette, patch test due before lightening.</span></div>
-              <div><strong>Preferences</strong><span data-client-preferences>Evening slots, low-maintenance finish.</span></div>
-              <div><strong>Last message</strong><span data-client-message>Asked whether a consultation is needed before booking balayage.</span></div>
-              <div><strong>Next action</strong><span data-client-action>Reply with the consultation slot and patch-test reminder.</span></div>
-            </div>
-            <div class="action-row"><button type="button" data-client-action-button>Reply</button><button type="button">Update record</button></div>
-          </article>
-
-          <aside class="panel span-12 assistant-strip">
-            <div class="panel-title"><h2>Customer message ready for approval</h2><span class="status-pill warn">not sent</span></div>
-            <p data-client-reply>Hi Mia, yes, a quick consultation is best before booking balayage so we can check your hair history and patch-test timing. We have space Thursday evening if that suits.</p>
-            <div class="draft-box">The console keeps the reply tied to the customer record, so whoever answers can see the notes first.</div>
-            <div class="action-row"><button type="button" data-demo-action="reply" data-action-done="Reply approved ✓">Approve reply</button><button type="button">Edit first</button></div>
+            </section>
+            <section class="activity-card" aria-labelledby="activity-title">
+              <div><p class="journey-overline">Activity</p><h3 id="activity-title">A visible decision trail</h3></div>
+              <ol data-activity-list><li><span>09:06</span><p><strong>Colour enquiry received</strong><small>Instagram message · fictional record</small></p></li></ol>
+            </section>
           </aside>
         </div>
+
+        <section class="journey-complete" data-journey-complete hidden>
+          <div><p class="journey-overline">Example complete</p><h3>One enquiry moved forward, with every decision visible.</h3><p>The client context, consultation and approved update stayed together. A real console would reflect the booking tools, permissions and service flow the salon actually uses.</p></div>
+          <button class="button-link" type="button" data-explore-toggle aria-expanded="false" aria-controls="full-example">Explore the wider dashboard</button>
+        </section>
+
+        <section class="full-example" id="full-example" data-full-example hidden aria-labelledby="full-example-title">
+          <div class="full-example-head"><div><p class="journey-overline">Optional exploration</p><h3 id="full-example-title" tabindex="-1">The wider working day</h3></div><p>Three reduced views show what else could sit around the core workflow.</p></div>
+          <div class="full-example-grid">
+            <article><span class="view-icon" aria-hidden="true">◫</span><h4>Today</h4><p>Bookings, gaps and unanswered enquiries in one prioritised view.</p><ul><li>12 bookings today</li><li>2 useful gaps</li><li>3 replies overdue</li></ul></article>
+            <article><span class="view-icon" aria-hidden="true">◎</span><h4>Clients</h4><p>Preferences, care notes and the next agreed action beside each client.</p><ul><li>Patch-test notes visible</li><li>Rebooking dates tracked</li><li>Contact preferences retained</li></ul></article>
+            <article><span class="view-icon" aria-hidden="true">✦</span><h4>Reviews &amp; content</h4><p>Approved review requests and useful post ideas tied to real service questions.</p><ul><li>4 review requests ready</li><li>3 FAQ ideas</li><li>All publishing needs approval</li></ul></article>
+          </div>
+        </section>
       </section>
 
-      <section class="screen" data-tab-panel="flow" hidden>
-        <div class="screen-grid">
-          <article class="panel span-12">
-            <div class="panel-title"><h2>Customer booking flow</h2><span class="status-pill good">live pipeline example</span></div>
-            <div class="quote-pipeline customer-flow">
-              <div class="quote-stage">
-                <h3>New enquiry</h3>
-                <div class="job-card"><strong>Ella M.</strong><span>Asked on Instagram about balayage pricing.</span><button type="button">Reply</button></div>
-                <div class="job-card"><strong>Nadia S.</strong><span>WhatsApp message for lash refill availability.</span><button type="button">Reply</button></div>
-              </div>
-              <div class="quote-stage">
-                <h3>Needs details</h3>
-                <div class="job-card"><strong>Mia R.</strong><span>Needs hair history and daylight photo.</span><button type="button">Reply</button></div>
-                <div class="job-card"><strong>Chloe B.</strong><span>Patch-test date not confirmed yet.</span><button type="button">Reply</button></div>
-              </div>
-              <div class="quote-stage">
-                <h3>Ready to book</h3>
-                <div class="job-card"><strong>Aisha P.</strong><span>Cut and finish, prefers Saturday morning.</span><button type="button">Create booking</button></div>
-                <div class="job-card"><strong>Laura C.</strong><span>Bridal trial package agreed.</span><button type="button">Reserve date</button></div>
-              </div>
-              <div class="quote-stage">
-                <h3>Aftercare</h3>
-                <div class="job-card"><strong>Grace T.</strong><span>Care note and review request ready.</span><button type="button">Send aftercare</button></div>
-                <div class="job-card"><strong>Amelia J.</strong><span>Six-week rebook reminder due.</span><button type="button">Send rebook</button></div>
-              </div>
-            </div>
-          </article>
-
-          <aside class="panel span-12 assistant-strip">
-            <div class="panel-title"><h2>One place to move customers forward</h2><span class="status-pill warn">your approval</span></div>
-            <p>Each card shows the customer, where they came from, what is missing, and the next action, so the salon can handle several enquiries without losing track.</p>
-          </aside>
-        </div>
+      <section class="how-it-works-v2" id="how-it-works" aria-labelledby="how-title">
+        <div><p class="eyebrow">What this demonstrates</p><h2 id="how-title">A control layer around the client journey.</h2></div>
+        <div class="principle-grid"><article><span>01</span><h3>Keep useful context together</h3><p>Bring selected enquiry, booking and client information into one working view.</p></article><article><span>02</span><h3>Make follow-up visible</h3><p>Show who needs a reply, what is missing and which appointments need attention.</p></article><article><span>03</span><h3>Keep approval explicit</h3><p>Prepare routine replies while the salon retains control of every client-facing action.</p></article></div>
       </section>
 
-      <section class="screen" data-tab-panel="content" hidden>
-        <div class="screen-grid">
-          <article class="panel span-4">
-            <div class="panel-title"><h2>Post ideas</h2></div>
-            <div class="lane-list">
-              <div class="lane"><div><strong>FAQ: colour prep</strong><span>Answer a common pre-appointment question.</span></div><div class="lane-actions"><span class="status-pill good">use today</span><button type="button">Schedule post</button></div></div>
-              <div class="lane"><div><strong>Service spotlight</strong><span>Explain one express treatment for short gaps.</span></div><div class="lane-actions"><span class="status-pill">draft</span><button type="button">Open draft</button></div></div>
-              <div class="lane"><div><strong>Review story</strong><span>Turn a kind review into a trust-building post.</span></div><div class="lane-actions"><span class="status-pill">idea</span><button type="button">Make post</button></div></div>
-            </div>
-          </article>
-
-          <article class="panel span-4">
-            <div class="panel-title"><h2>Review request queue</h2></div>
-            <div class="metric"><span>Ready this week</span><strong>11</strong><small>Example queue, not a result claim</small></div>
-            <div class="draft-box">Suggested wording is kept short, polite and approved by you before sending.</div>
-            <div class="action-row"><button type="button">Send review requests</button><button type="button">Edit message</button></div>
-          </article>
-
-          <article class="panel span-4">
-            <div class="panel-title"><h2>Proof checklist</h2></div>
-            <div class="proof-grid">
-              <div class="proof-item"><span class="proof-dot"></span><span>Photo permission checked</span></div>
-              <div class="proof-item"><span class="proof-dot"></span><span>Service FAQ answered</span></div>
-              <div class="proof-item"><span class="proof-dot"></span><span>Care notes ready</span></div>
-              <div class="proof-item"><span class="proof-dot"></span><span>Booking CTA checked</span></div>
-            </div>
-          </article>
-
-          <aside class="panel span-12 assistant-strip">
-            <div class="panel-title"><h2>Caption draft ready for your check</h2><span class="status-pill warn">not published</span></div>
-            <p>“Thinking about changing your colour? A quick consultation helps us understand your hair history, what you want, and what is realistic before booking a longer appointment.”</p>
-            <div class="action-row"><button type="button">Approve caption</button><button type="button">Schedule post</button></div>
-          </aside>
-        </div>
+      <section class="closing-cta closing-cta-v2 conversion-panel" data-conversion-panel hidden>
+        <div><p class="eyebrow">Your workflow, not this template</p><h2>What do you currently manage across separate tools?</h2><p>Tell us what gets missed, repeated or checked in too many places. We can discuss whether a focused control view would be useful.</p></div>
+        <div class="closing-actions"><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Discuss it on WhatsApp</a><a class="button-link" href="mailto:hello@roupicogroup.com?subject=Salon%20Control%20Console%20enquiry">Email Roupiço Group</a></div>
       </section>
     </main>
 
-    <section class="closing-cta"><div><p class="eyebrow">What you just experienced</p><h2>Client context, prepared replies and review follow-up in one place.</h2><p>Sample interactions show the idea; no message or request is actually sent.</p></div><div class="closing-actions"><button class="button-link" type="button" data-demo-reset>Reset demo</button><a class="button-link" href="./index.html#demos">View all demos</a><a class="button-link primary whatsapp-link" data-whatsapp-link href="#">Share feedback on WhatsApp</a></div></section>
-    <footer class="footer"><span>Concept demo only · sample data and simulated actions, not client results.</span><span><a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
+    <footer class="footer"><span>Concept demo only · fictional data and simulated actions, not client results.</span><span><a href="./index.html#examples">Other examples</a> · <a href="https://roupicogroup.com/">Visit roupicogroup.com</a></span></footer>
   </div>
   <script src="./demo.js" defer></script>
 </body>
